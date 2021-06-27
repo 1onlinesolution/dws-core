@@ -4,13 +4,16 @@ export default class Environment {
   static getVariable(key: string, exitIfUndefined = true): string | undefined {
     const value = process.env[key.toString()];
 
-    if (typeof value === 'undefined' && exitIfUndefined) {
-      // eslint-disable-next-line no-console
-      console.error(`${colors.red('[APP ERROR] Missing env variable:')} ${colors.green(key)}`);
-
-      return process.exit(1);
+    if (typeof value !== 'undefined' || !exitIfUndefined) {
+      return value;
     }
 
-    return value;
+    // callback error asynchronously
+    process.nextTick(function () {
+      // eslint-disable-next-line no-console
+      console.error(`${colors.red('[APP ERROR] Missing env variable:')} ${colors.green(key)}`);
+      throw new Error(`[APP ERROR] Missing env variable: ${key}`);
+    });
+    // return process.exit(1);
   }
 }
