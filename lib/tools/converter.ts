@@ -1,4 +1,4 @@
-import format from './tools/ms';
+import format from './ms';
 
 export default class Converter {
   static toBoolean = (value: boolean | string | undefined, ifUndefinedSetToFalse = true): boolean => {

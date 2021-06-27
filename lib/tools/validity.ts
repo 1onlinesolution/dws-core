@@ -1,3 +1,5 @@
+import RegExpUtil from './regExpUtil';
+
 export default class Validity {
   static isArray<T>(obj: T | undefined): boolean {
     return Validity.isDefined(obj) && Array.isArray(obj);
@@ -8,7 +10,7 @@ export default class Validity {
   }
 
   static isDefined<T>(obj: T): boolean {
-    return typeof obj !== 'undefined';
+    return obj !== undefined;
   }
 
   static isBoolean<T>(obj: T): boolean {
@@ -19,14 +21,15 @@ export default class Validity {
     return typeof obj === 'object';
   }
 
+  static isValidUrl(email: string | undefined): boolean {
+    if (typeof email !== 'string') return false;
+    return RegExpUtil.url.test(email.toLowerCase());
+  }
+
   static isValidEmail(email: string | undefined): boolean {
     if (typeof email !== 'string') return false;
     // https://stackoverflow.com/a/46181
-    const regex =
-      // eslint-disable-next-line security/detect-unsafe-regex
-      // eslint-disable-next-line no-useless-escape
-      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return regex.test(email.toLowerCase());
+    return RegExpUtil.email.test(email.toLowerCase());
   }
 
   static isValidPassword(password: string | undefined): boolean {
