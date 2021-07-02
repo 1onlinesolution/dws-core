@@ -1,7 +1,41 @@
 import DateTimeUtils from '../tools/dateTimeUtils';
 
-interface HttpResponse {
-  status: number,
+export enum HttpStatusCode {
+  Ok = 200,
+  Created = 201,
+  NoContent = 204,
+  Found = 302,
+  BadRequest = 400,
+  Unauthorized = 401,
+  Forbidden = 403,
+  NotFound = 404,
+  Conflict = 409,
+  UnprocessableEntity = 422,
+  ServerError = 500,
+  NotImplemented = 501,
+  BadGateway = 502,
+  ServiceUnavailable = 503,
+}
+
+export enum HttpStatusName {
+  Ok = 'Ok',
+  Created = 'Created',
+  NoContent = 'No Content',
+  Found = 'Found',
+  BadRequest = 'BadRequest',
+  Unauthorized = 'Unauthorized',
+  Forbidden = 'Forbidden',
+  NotFound = 'Not Found',
+  Conflict = 'Conflict',
+  UnprocessableEntity = 'Unprocessable Entity',
+  ServerError = 'Internal Server Error',
+  NotImplemented = 'Not Implemented',
+  BadGateway = 'Bad Gateway',
+  ServiceUnavailable = 'Service Unavailable',
+}
+
+export interface HttpResponse {
+  status: HttpStatusCode,
   success: boolean,
   timestamp: Date,
   ip: string | undefined,
@@ -10,7 +44,7 @@ interface HttpResponse {
 }
 
 // eslint-disable-next-line @typescript-eslint/ban-types
-function response(status: number, value: string | object | undefined, error = undefined, ipAddress: string | undefined = undefined): HttpResponse {
+function response(status: HttpStatusCode, value: string | object | undefined, error = undefined, ipAddress: string | undefined = undefined): HttpResponse {
   return {
     status: status,
     value: value,
@@ -21,66 +55,7 @@ function response(status: number, value: string | object | undefined, error = un
   };
 }
 
-export default class HttpStatus {
-  // === Codes
-
-  static readonly statusOk = 200;
-
-  static readonly statusCreated = 201;
-
-  static readonly statusNoContent = 204;
-
-  static readonly statusFound = 302;
-
-  static readonly statusBadRequest = 400;
-
-  static readonly statusUnauthorized = 401;
-
-  static readonly statusForbidden = 403;
-
-  static readonly statusNotFound = 404;
-
-  static readonly statusConflict = 409;
-
-  static readonly statusUnprocessableEntity = 422;
-
-  static readonly statusServerError = 500;
-
-  static readonly statusNotImplemented = 501;
-
-  static readonly statusBadGateway = 502;
-
-  static readonly statusServiceUnavailable = 503;
-
-  // === Names
-
-  static readonly statusNameOk = 'Ok';
-
-  static readonly statusNameCreated = 'Created';
-
-  static readonly statusNameNoContent = 'No Content';
-
-  static readonly statusNameFound = 'Found';
-
-  static readonly statusNameBadRequest = 'BadRequest';
-
-  static readonly statusNameUnauthorized = 'Unauthorized';
-
-  static readonly statusNameForbidden = 'Forbidden';
-
-  static readonly statusNameNotFound = 'Not Found';
-
-  static readonly statusNameConflict = 'Conflict';
-
-  static readonly statusNameUnprocessableEntity = 'Unprocessable Entity';
-
-  static readonly statusNameServerError = 'Internal Server Error';
-
-  static readonly statusNameNotImplemented = 'Not Implemented';
-
-  static readonly statusNameBadGateway = 'Bad Gateway';
-
-  static readonly statusNameServiceUnavailable = 'Service Unavailable';
+export class HttpStatus {
 
   // === Responses
 
@@ -90,7 +65,7 @@ export default class HttpStatus {
    */
   // eslint-disable-next-line @typescript-eslint/ban-types
   static ok(value: string | object | undefined, error = undefined, ip = undefined): HttpResponse {
-    return response(HttpStatus.statusOk, value || HttpStatus.statusNameOk, error, ip);
+    return response(HttpStatusCode.Ok, value || HttpStatusName.Ok, error, ip);
   }
 
   /**
@@ -100,7 +75,7 @@ export default class HttpStatus {
    */
   // eslint-disable-next-line @typescript-eslint/ban-types
   static created(value: string | object | undefined, error = undefined, ip = undefined): HttpResponse {
-    return response(HttpStatus.statusCreated, value || HttpStatus.statusNameCreated, error, ip);
+    return response(HttpStatusCode.Created, value || HttpStatusName.Created, error, ip);
   }
 
   /**
@@ -110,7 +85,7 @@ export default class HttpStatus {
    */
   // eslint-disable-next-line @typescript-eslint/ban-types
   static noContent(value: string | object | undefined, error = undefined, ip = undefined): HttpResponse {
-    return response(HttpStatus.statusNoContent, value || HttpStatus.statusNameNoContent, error, ip);
+    return response(HttpStatusCode.NoContent, value || HttpStatusName.NoContent, error, ip);
   }
 
   /**
@@ -121,7 +96,7 @@ export default class HttpStatus {
    */
   // eslint-disable-next-line @typescript-eslint/ban-types
   static found(value: string | object | undefined, error = undefined, ip = undefined): HttpResponse {
-    return response(HttpStatus.statusFound, value || HttpStatus.statusNameFound, error, ip);
+    return response(HttpStatusCode.Found, value || HttpStatusName.Found, error, ip);
   }
 
   /**
@@ -131,7 +106,7 @@ export default class HttpStatus {
    */
   // eslint-disable-next-line @typescript-eslint/ban-types
   static badRequest(value: string | object | undefined, error = undefined, ip = undefined): HttpResponse {
-    return response(HttpStatus.statusBadRequest, value || HttpStatus.statusNameBadRequest, error, ip);
+    return response(HttpStatusCode.BadRequest, value || HttpStatusName.BadRequest, error, ip);
   }
 
   /**
@@ -141,7 +116,7 @@ export default class HttpStatus {
    */
   // eslint-disable-next-line @typescript-eslint/ban-types
   static unauthorized(value: string | object | undefined, error = undefined, ip = undefined): HttpResponse {
-    return response(HttpStatus.statusUnauthorized, value || HttpStatus.statusNameUnauthorized, error, ip);
+    return response(HttpStatusCode.Unauthorized, value || HttpStatusName.Unauthorized, error, ip);
   }
 
   /**
@@ -151,7 +126,7 @@ export default class HttpStatus {
    */
   // eslint-disable-next-line @typescript-eslint/ban-types
   static forbidden(value: string | object | undefined, error = undefined, ip = undefined): HttpResponse {
-    return response(HttpStatus.statusForbidden, value || HttpStatus.statusNameForbidden, error, ip);
+    return response(HttpStatusCode.Forbidden, value || HttpStatusName.Forbidden, error, ip);
   }
 
   /**
@@ -161,7 +136,7 @@ export default class HttpStatus {
    */
   // eslint-disable-next-line @typescript-eslint/ban-types
   static notFound(value: string | object | undefined, error = undefined, ip = undefined): HttpResponse {
-    return response(HttpStatus.statusNotFound, value || HttpStatus.statusNameNotFound, error, ip);
+    return response(HttpStatusCode.NotFound, value || HttpStatusName.NotFound, error, ip);
   }
 
   /**
@@ -170,7 +145,7 @@ export default class HttpStatus {
    */
   // eslint-disable-next-line @typescript-eslint/ban-types
   static conflict(value: string | object | undefined, error = undefined, ip = undefined): HttpResponse {
-    return response(HttpStatus.statusConflict, value || HttpStatus.statusNameConflict, error, ip);
+    return response(HttpStatusCode.Conflict, value || HttpStatusName.Conflict, error, ip);
   }
 
   /**
@@ -181,7 +156,7 @@ export default class HttpStatus {
    */
   // eslint-disable-next-line @typescript-eslint/ban-types
   static unprocessableEntity(value: string | object | undefined, error = undefined, ip = undefined): HttpResponse {
-    return response(HttpStatus.statusUnprocessableEntity, value || HttpStatus.statusNameUnprocessableEntity, error, ip);
+    return response(HttpStatusCode.UnprocessableEntity, value || HttpStatusName.UnprocessableEntity, error, ip);
   }
 
   /**
@@ -191,7 +166,7 @@ export default class HttpStatus {
    */
   // eslint-disable-next-line @typescript-eslint/ban-types
   static serverError(value: string | object | undefined, error = undefined, ip = undefined): HttpResponse {
-    return response(HttpStatus.statusServerError, value || HttpStatus.statusNameServerError, error, ip);
+    return response(HttpStatusCode.ServerError, value || HttpStatusName.ServerError, error, ip);
   }
 
   /**
@@ -200,7 +175,7 @@ export default class HttpStatus {
    */
   // eslint-disable-next-line @typescript-eslint/ban-types
   static notImplemented(value: string | object | undefined, error = undefined, ip = undefined): HttpResponse {
-    return response(HttpStatus.statusNotImplemented, value || HttpStatus.statusNameNotImplemented, error, ip);
+    return response(HttpStatusCode.NotImplemented, value || HttpStatusName.NotImplemented, error, ip);
   }
 
   /**
@@ -211,7 +186,7 @@ export default class HttpStatus {
    */
   // eslint-disable-next-line @typescript-eslint/ban-types
   static badGateway(value: string | object | undefined, error = undefined, ip = undefined): HttpResponse {
-    return response(HttpStatus.statusBadGateway, value || HttpStatus.statusNameBadGateway, error, ip);
+    return response(HttpStatusCode.BadGateway, value || HttpStatusName.BadGateway, error, ip);
   }
 
   /**
@@ -221,6 +196,6 @@ export default class HttpStatus {
    */
   // eslint-disable-next-line @typescript-eslint/ban-types
   static serviceUnavailable(value: string | object | undefined, error = undefined, ip = undefined): HttpResponse {
-    return response(HttpStatus.statusServiceUnavailable, value || HttpStatus.statusNameServiceUnavailable, error, ip);
+    return response(HttpStatusCode.ServiceUnavailable, value || HttpStatusName.ServiceUnavailable, error, ip);
   }
 }

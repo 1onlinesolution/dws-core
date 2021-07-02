@@ -5,7 +5,7 @@ export default class Validity {
     return Validity.isDefined(obj) && Array.isArray(obj);
   }
 
-  static isInteger(obj: number | undefined): boolean {
+  static isInteger(obj: number): boolean {
     return Number.isInteger(obj);
   }
 
@@ -21,27 +21,25 @@ export default class Validity {
     return typeof obj === 'object';
   }
 
-  static isValidUrl(email: string | undefined): boolean {
-    if (typeof email !== 'string') return false;
+  static isValidUrl(email: string): boolean {
     return RegExpUtil.url.test(email.toLowerCase());
   }
 
-  static isValidEmail(email: string | undefined): boolean {
-    if (typeof email !== 'string') return false;
+  static isValidEmail(email: string): boolean {
+    if (email === undefined) return false;
     // https://stackoverflow.com/a/46181
     return RegExpUtil.email.test(email.toLowerCase());
   }
 
-  static isValidPassword(password: string | undefined): boolean {
-    if (typeof password !== 'string') return false;
+  static isValidPassword(password: string): boolean {
+    if (password === undefined) return false;
     // https://stackoverflow.com/a/46181
     // eslint-disable-next-line no-useless-escape
     const regex = /^[a-zA-Z0-9!@#\$%\^\&*\)\(+=._-]{8,}$/g;
     return regex.test(password);
   }
 
-  static isValidCurrency(text: string | undefined, prefix: string | undefined = ''): boolean {
-    if (typeof text !== 'string') return false;
+  static isValidCurrency(text: string, prefix: string | undefined = ''): boolean {
     // eslint-disable-next-line security/detect-unsafe-regex
     const re = /^[$£€] ?(?=\(.*\)|[^()]*$)\(?\d{1,3}(,?\d{3})?(\.\d\d?)?\)?$/;
     if (prefix && prefix !== '') return re.test(text.replace(prefix, ''));
@@ -52,13 +50,13 @@ export default class Validity {
     return typeof date === 'object' && date instanceof Date;
   }
 
-  static isValidNumber(value: number | undefined, min: number = Number.MIN_VALUE, max: number = Number.MAX_VALUE, exclude: number[] = []): boolean {
-    if (typeof value === 'undefined') return false;
+  static isValidNumber(value: number, min: number = Number.MIN_VALUE, max: number = Number.MAX_VALUE, exclude: number[] = []): boolean {
+    if (value === undefined) return false;
     return !((min && +value < min) || (max && +value > max) || (exclude && exclude.length > 0 && exclude.includes(+value)));
   }
 
   static isValidInteger(
-    value: number | undefined,
+    value: number,
     min: number = Number.MIN_SAFE_INTEGER,
     max: number = Number.MAX_SAFE_INTEGER,
     exclude: number[] = [],
@@ -66,15 +64,14 @@ export default class Validity {
     return Validity.isInteger(value) && Validity.isValidNumber(value, min, max, exclude);
   }
 
-  static isValidString(text: string | undefined, min = 1, max: number = Number.MAX_SAFE_INTEGER): boolean {
-    if (typeof text !== 'string') return false;
+  static isValidString(text: string, min = 1, max: number = Number.MAX_SAFE_INTEGER): boolean {
+    if (text === undefined) return false;
     // min = 0 -> empty string is allowed
     // min = 1 -> empty string is not allowed
     return !(typeof text === 'undefined' || (min && text.length < min) || (max && text.length > max));
   }
 
-  static isUndefinedOrEmptyString(text: string | undefined): boolean {
-    if (typeof text !== 'string') return false;
+  static isUndefinedOrEmptyString(text: string): boolean {
     return typeof text === 'undefined' || text === '';
   }
 }

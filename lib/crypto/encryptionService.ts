@@ -9,14 +9,15 @@ interface EncryptResult {
 // https://nodejs.org/dist/latest-v10.x/docs/api/crypto.html#crypto_crypto_createcipheriv_algorithm_key_iv_options
 // https://nodejs.org/dist/latest-v10.x/docs/api/crypto.html#crypto_crypto_createdecipheriv_algorithm_key_iv_options
 
-// Initialization vectors should be unpredictable and unique; ideally, they will be cryptographically random.
-// They do not have to be secret: IVs are typically just added to ciphertext messages unencrypted.
-// It may sound contradictory that something has to be unpredictable and unique, but does not have to be secret;
-// it is important to remember that an attacker must not be able to predict ahead of time what a given IV will be.
-const IV_LENGTH = 16; // For AES, this is always 16
-const ENCODING = 'hex';
-
 export default class EncryptionService {
+  // Initialization vectors should be unpredictable and unique; ideally, they will be cryptographically random.
+  // They do not have to be secret: IVs are typically just added to ciphertext messages unencrypted.
+  // It may sound contradictory that something has to be unpredictable and unique, but does not have to be secret;
+  // it is important to remember that an attacker must not be able to predict ahead of time what a given IV will be.
+  private static Default_IV_Length = 16; // For AES, this is always 16
+
+  private static DefaultEncoding: crypto.Encoding = 'hex';
+
   private readonly algorithm: string;
   private readonly key: Buffer;
   private readonly encryptionKey: string;
@@ -26,10 +27,10 @@ export default class EncryptionService {
   // They do not have to be secret: IVs are typically just added to ciphertext messages unencrypted.
   // It may sound contradictory that something has to be unpredictable and unique, but does not have to be secret;
   // it is important to remember that an attacker must not be able to predict ahead of time what a given IV will be.
-  private iv_length = IV_LENGTH;
+  private iv_length = EncryptionService.Default_IV_Length;
 
-  constructor(algorithm = 'aes-256-cbc', encryptionKey: string, encoding: crypto.Encoding = ENCODING) {
-    this.algorithm = algorithm || 'aes-256-cbc';
+  constructor({ algorithm = 'aes-256-cbc', encryptionKey = '', encoding = EncryptionService.DefaultEncoding } = {}) {
+    this.algorithm = algorithm;
 
     //
     // The key is the raw key used by the algorithm and iv is an initialization vector.

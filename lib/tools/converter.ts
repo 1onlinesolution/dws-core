@@ -9,9 +9,9 @@ export default class Converter {
     return Boolean(result);
   };
 
-  static ms = (value: string | number, options: { long: boolean }): string | number => format(value, options);
+  static ms = (value: string | number, options: { long: boolean } = { long: false }): string | number => format(value, options);
 
-  static toSeconds = (value: string | number, options: { long: boolean }): string | number => format(value, options);
+  static toSeconds = (value: string | number, options: { long: boolean } = { long: false }): string | number => format(value, options);
 
   static checkBoxToBoolean = (value: string | undefined, valueExpected: string): boolean => {
     if (typeof value === 'undefined') {

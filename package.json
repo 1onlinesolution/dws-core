@@ -1,6 +1,6 @@
 {
   "name": "@1onlinesolution/dws-core",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "DWS Core utilities",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -29,6 +29,7 @@
     "@types/bcrypt": "^5.0.0",
     "@types/express": "^4.17.12",
     "@types/jsonwebtoken": "^8.5.2",
+    "@types/mongodb": "^3.6.18",
     "@types/node": "^15.12.4",
     "@typescript-eslint/eslint-plugin": "^4.28.0",
     "@typescript-eslint/parser": "^4.28.0",
@@ -52,14 +53,13 @@
   "eslintConfig": {
     "root": true,
     "env": {
-      "browser": true,
       "es2021": true,
       "node": true,
       "mocha": true
     },
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
-      "ecmaVersion": 12,
+      "ecmaVersion": 2021,
       "ecmaFeatures": {
         "arrowFunctions": true
       }

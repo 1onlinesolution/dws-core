@@ -9,13 +9,14 @@ export default class JwtService {
   private readonly defaultAccessJwtOptions: jwt.SignOptions;
   private readonly defaultRefreshJwtOptions: jwt.SignOptions;
 
-  constructor(
-    algorithm: jwt.Algorithm = 'HS512',
-    accessTokenSecretKey: jwt.Secret,
-    refreshTokenSecretKey: jwt.Secret,
-    accessTokenExpiresIn: number | string = '10m',
-    refreshTokenExpiresIn: number | string = '60m',
-  ) {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  constructor({
+    algorithm = 'HS512' as jwt.Algorithm,
+    accessTokenSecretKey = '',
+    refreshTokenSecretKey = '',
+    accessTokenExpiresIn = 0,
+    refreshTokenExpiresIn = 0,
+  }) {
     this.algorithm = algorithm;
     this.accessTokenSecretKey = accessTokenSecretKey;
     this.refreshTokenSecretKey = refreshTokenSecretKey;
@@ -29,6 +30,8 @@ export default class JwtService {
       algorithm: algorithm,
       expiresIn: refreshTokenExpiresIn,
     };
+
+    return this;
   }
 
   // eslint-disable-next-line @typescript-eslint/ban-types
