@@ -1,6 +1,6 @@
 {
   "name": "@1onlinesolution/dws-core",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "DWS Core utilities",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -13,7 +13,8 @@
     "major": "npm version major",
     "lint": "eslint lib/**/*.ts",
     "prebuild": "rm -rf dist && npm run lint",
-    "build": "tsc"
+    "build": "tsc",
+    "test": "npm run lint && jest --no-cache"
   },
   "repository": {
     "type": "git",
@@ -28,6 +29,7 @@
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
     "@types/express": "^4.17.12",
+    "@types/jest": "^26.0.23",
     "@types/jsonwebtoken": "^8.5.2",
     "@types/mongodb": "^3.6.18",
     "@types/node": "^15.12.4",
@@ -36,7 +38,9 @@
     "dotenv": "^10.0.0",
     "eslint": "^7.29.0",
     "eslint-plugin-security": "^1.4.0",
-    "prettier": "^2.3.1"
+    "jest": "^27.0.6",
+    "prettier": "^2.3.1",
+    "ts-jest": "^27.0.3"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
@@ -96,5 +100,19 @@
         "always"
       ]
     }
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "setupFilesAfterEnv": [
+      "./lib/test/setup.ts"
+    ],
+    "collectCoverage": true,
+    "coverageReporters": [
+      "json",
+      "text",
+      "lcov",
+      "clover"
+    ]
   }
 }

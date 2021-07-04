@@ -21,8 +21,8 @@ export class Validity {
     return typeof obj === 'object';
   }
 
-  static isValidUrl(email: string): boolean {
-    return RegExpUtil.url.test(email.toLowerCase());
+  static isValidUrl(url: string): boolean {
+    return RegExpUtil.url.test(url.toLowerCase());
   }
 
   static isValidEmail(email: string): boolean {
@@ -71,7 +71,7 @@ export class Validity {
     return !(typeof text === 'undefined' || (min && text.length < min) || (max && text.length > max));
   }
 
-  static isUndefinedOrEmptyString(text: string): boolean {
+  static isUndefinedOrEmptyString(text: string | undefined): boolean {
     return typeof text === 'undefined' || text === '';
   }
 }

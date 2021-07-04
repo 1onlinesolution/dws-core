@@ -1,4 +1,4 @@
-import colors from 'colors/safe';
+// import colors from 'colors/safe';
 
 export class Environment {
   static getVariable(key: string, exitIfUndefined = true): string | undefined {
@@ -8,12 +8,15 @@ export class Environment {
       return value;
     }
 
-    // callback error asynchronously
-    process.nextTick(function () {
-      // eslint-disable-next-line no-console
-      console.error(`${colors.red('[APP ERROR] Missing env variable:')} ${colors.green(key)}`);
-      throw new Error(`[APP ERROR] Missing env variable: ${key}`);
-    });
+    // // callback error asynchronously
+    // process.nextTick(function () {
+    //   // eslint-disable-next-line no-console
+    //   console.error(`${colors.red('[APP ERROR] Missing env variable:')} ${colors.green(key)}`);
+    //   throw new Error(`[APP ERROR] Missing env variable: ${key}`);
+    // });
+
+    // console.error(`${colors.red('[APP ERROR] Missing env variable:')} ${colors.green(key)}`);
+    throw new Error(`[APP ERROR] Missing env variable: ${key}`);
     // return process.exit(1);
   }
 }
