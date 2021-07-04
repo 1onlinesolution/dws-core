@@ -14,14 +14,14 @@ export class PasswordService {
 
   static async checkPassword(myPlaintextPassword: string, hashedPassword: string): Promise<boolean> {
     // https://www.npmjs.com/package/bcrypt
-    if (!myPlaintextPassword) return Promise.reject(new Error('invalid password'));
-    if (!hashedPassword) return Promise.reject(new Error('invalid hashed password'));
+    if (!myPlaintextPassword || myPlaintextPassword === '') return Promise.reject(new Error('invalid password'));
+    if (!hashedPassword || hashedPassword === '') return Promise.reject(new Error('invalid hashed password'));
 
     return await bcrypt.compare(myPlaintextPassword, hashedPassword);
   }
 
-  static async hashPassword(password: string | Buffer, saltOrRounds: string | number): Promise<string> {
-    if (!password) return Promise.reject(new Error('invalid password'));
+  static async hashPassword(password: string | Buffer, saltOrRounds?: string | number): Promise<string> {
+    if (!password || password === '') return Promise.reject(new Error('invalid password'));
     if (saltOrRounds === undefined) saltOrRounds = DEFAULT_SALT_ROUNDS;
     return await bcrypt.hash(password, saltOrRounds);
   }
@@ -32,7 +32,7 @@ export class PasswordService {
   }
 
   static randomBytesAsToken(length = 32, encoding: BufferEncoding = 'hex'): string {
-    const buffer = this.randomBytes(length);
+    const buffer = PasswordService.randomBytes(length);
     if(!buffer) throw new Error('cannot generate token buffer');
     return buffer.toString(encoding);
   }

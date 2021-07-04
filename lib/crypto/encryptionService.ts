@@ -113,13 +113,7 @@ export class EncryptionService {
 
   decryptCompact(text: string): string {
     const textParts = text.split(':');
-    const iv = Buffer.from(textParts.shift() as string, this.encoding);
-    const encryptedText = Buffer.from(textParts.join(':'), this.encoding).toString();
-    const decipher = crypto.createDecipheriv(this.algorithm, this.key, iv);
-    // let decrypted = decipher.update(encryptedText, encoding);
-    // decrypted += decipher.final();
-    // return decrypted.toString();
-    return Buffer.concat([decipher.update(encryptedText, this.encoding), decipher.final()]).toString();
+    return this.decrypt(textParts.shift() as string, textParts[0]);
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
