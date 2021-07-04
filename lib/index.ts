@@ -1,6 +1,7 @@
 export { RegExpUtil, Validity, Converter, DateTimeUtils, Environment } from './tools';
 export { HttpStatusCode, HttpStatusName, HttpResponse, HttpStatus } from './http';
 export { PasswordService, EncryptionService, JwtService, BanUser } from './crypto';
+export { IMongoConnection, MongoConnection, IMongoDatabase, MongoDatabase } from './mongodb';
 
 export {
   // address
@@ -41,3 +42,4 @@ export {
   // dataType
   DataType,
 } from './models';
+

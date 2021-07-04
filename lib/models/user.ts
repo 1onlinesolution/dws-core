@@ -1,6 +1,5 @@
 import { ObjectId } from 'mongodb';
-import DateTimeUtils from '../tools/dateTimeUtils';
-import Validity from '../tools/validity';
+import { Validity, DateTimeUtils } from '../tools';
 import { IUserStatistics, UserStatistics } from './userStatistics';
 import { IMongoIndexType } from './mongoIndexType';
 

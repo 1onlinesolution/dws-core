@@ -1,7 +1,6 @@
 import { ObjectId } from 'mongodb';
-import DateTimeUtils from '../tools/dateTimeUtils';
 import { IMongoIndexType } from './mongoIndexType';
-import Validity from '../tools/validity';
+import { Validity, DateTimeUtils } from '../tools';
 
 export interface IAddress {
   _id: ObjectId;

@@ -1,6 +1,6 @@
 import * as jwt from 'jsonwebtoken';
 
-export default class JwtService {
+export class JwtService {
   private readonly algorithm: jwt.Algorithm;
   private readonly accessTokenSecretKey: jwt.Secret;
   private readonly refreshTokenSecretKey: jwt.Secret;

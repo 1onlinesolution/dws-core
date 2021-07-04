@@ -1,5 +1,4 @@
-import DateTimeUtils from '../tools/dateTimeUtils';
-import Validity from '../tools/validity';
+import { Validity, DateTimeUtils } from '../tools';
 
 export interface IUserStatistics {
   loggedInLastDate: Date;

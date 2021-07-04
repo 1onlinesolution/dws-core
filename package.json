@@ -1,6 +1,6 @@
 {
   "name": "@1onlinesolution/dws-core",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "DWS Core utilities",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -55,7 +55,7 @@
     "env": {
       "es2021": true,
       "node": true,
-      "mocha": true
+      "jest": true
     },
     "parser": "@typescript-eslint/parser",
     "parserOptions": {

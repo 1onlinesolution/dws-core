@@ -1,7 +1,7 @@
 import { Request } from 'express';
-import RegExpUtil from '../tools/regExpUtil';
+import { RegExpUtil } from '../tools';
 
-export default class HttpUtils {
+export class HttpUtils {
   // If the Node app is running on NGINX or any other proxy for that matter,
   // then you will get the local ip address for every request i.e, 127.0.0.1.
   // To solve this problem, we need to catch real ip address of the user from where the request is made.

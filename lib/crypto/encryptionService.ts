@@ -1,7 +1,7 @@
 import * as crypto from 'crypto';
-import PasswordService from './passwordService';
+import { PasswordService } from './passwordService';
 
-interface EncryptResult {
+export interface EncryptResult {
   iv: string;
   encrypted: string;
 }
@@ -9,7 +9,7 @@ interface EncryptResult {
 // https://nodejs.org/dist/latest-v10.x/docs/api/crypto.html#crypto_crypto_createcipheriv_algorithm_key_iv_options
 // https://nodejs.org/dist/latest-v10.x/docs/api/crypto.html#crypto_crypto_createdecipheriv_algorithm_key_iv_options
 
-export default class EncryptionService {
+export class EncryptionService {
   // Initialization vectors should be unpredictable and unique; ideally, they will be cryptographically random.
   // They do not have to be secret: IVs are typically just added to ciphertext messages unencrypted.
   // It may sound contradictory that something has to be unpredictable and unique, but does not have to be secret;

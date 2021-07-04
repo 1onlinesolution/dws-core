@@ -1,4 +1,4 @@
-export default class RegExpUtil {
+export class RegExpUtil {
   static readonly usZipCode = /^[0-9]{5}(?:-[0-9]{4})?$/;
 
   static readonly usSocialSecurityNumber = /^(?!000|666)[0-8][0-9]{2}-?(?!00)[0-9]{2}-?(?!0000)[0-9]{4}$/;

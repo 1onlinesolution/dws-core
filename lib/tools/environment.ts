@@ -1,6 +1,6 @@
 import colors from 'colors/safe';
 
-export default class Environment {
+export class Environment {
   static getVariable(key: string, exitIfUndefined = true): string | undefined {
     const value = process.env[key.toString()];
 

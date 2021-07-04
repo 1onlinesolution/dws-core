@@ -1,6 +1,6 @@
 import format from './ms';
 
-export default class Converter {
+export class Converter {
   static toBoolean = (value: boolean | string | undefined, ifUndefinedSetToFalse = true): boolean => {
     // Javascript way
     // if (typeof value === 'undefined') return !ifUndefinedSetToFalse;

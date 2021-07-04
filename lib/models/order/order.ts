@@ -2,7 +2,7 @@ import { ObjectId } from 'mongodb';
 import { Address } from '../address';
 import { IMongoIndexType } from '../mongoIndexType';
 import { OrderItem } from './orderItem';
-import DateTimeUtils from '../../tools/dateTimeUtils';
+import { DateTimeUtils } from '../../tools';
 
 export enum OrderTerm {
   Month = 1,

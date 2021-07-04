@@ -17,7 +17,7 @@
 const MAX_FAILED_COUNT = 5; // Max tries
 const FORGET_FAILED_MINS = 15; // time the user will be blocked
 
-export default class BanUser {
+export class BanUser {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private readonly blockList: any;
 

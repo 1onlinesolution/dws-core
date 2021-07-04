@@ -3,7 +3,7 @@ import * as crypto from 'crypto';
 
 const DEFAULT_SALT_ROUNDS = 12.5;
 
-export default class PasswordService {
+export class PasswordService {
   static async generateSalt(rounds: number = DEFAULT_SALT_ROUNDS): Promise<string> {
     if (!rounds) {
       rounds = DEFAULT_SALT_ROUNDS;

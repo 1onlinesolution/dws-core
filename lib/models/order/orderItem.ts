@@ -1,6 +1,6 @@
 import { ObjectId } from 'mongodb';
 import { Product } from '../product/product';
-import DateTimeUtils from '../../tools/dateTimeUtils';
+import { DateTimeUtils } from '../../tools';
 
 export interface IOrderItem {
   _id: ObjectId;

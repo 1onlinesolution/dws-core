@@ -1,6 +1,5 @@
-import DateTimeUtils from '../tools/dateTimeUtils';
 import { IMongoIndexType } from './mongoIndexType';
-import Validity from '../tools/validity';
+import { Validity, DateTimeUtils } from '../tools';
 
 export interface IUserLogin {
   ip: string;

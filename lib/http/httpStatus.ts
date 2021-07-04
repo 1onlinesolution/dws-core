@@ -1,4 +1,4 @@
-import DateTimeUtils from '../tools/dateTimeUtils';
+import { DateTimeUtils } from '../tools';
 
 export enum HttpStatusCode {
   Ok = 200,

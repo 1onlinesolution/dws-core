@@ -1,3 +1,2 @@
-import { HttpStatusCode, HttpStatusName, HttpResponse, HttpStatus } from './httpStatus';
-
-export { HttpStatusCode, HttpStatusName, HttpResponse, HttpStatus };
+export { HttpStatusCode, HttpStatusName, HttpResponse, HttpStatus } from './httpStatus';
+export { HttpUtils } from './httpUtils';

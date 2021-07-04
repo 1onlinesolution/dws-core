@@ -1,6 +1,6 @@
 import { ObjectId } from 'mongodb';
 import { ProductFeature } from './productFeature';
-import DateTimeUtils from '../../tools/dateTimeUtils';
+import { DateTimeUtils } from '../../tools';
 import { IMongoIndexType } from '../mongoIndexType';
 
 export enum ProductCategory {

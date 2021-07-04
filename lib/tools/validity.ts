@@ -1,6 +1,6 @@
-import RegExpUtil from './regExpUtil';
+import { RegExpUtil } from './regExpUtil';
 
-export default class Validity {
+export class Validity {
   static isArray<T>(obj: T | undefined): boolean {
     return Validity.isDefined(obj) && Array.isArray(obj);
   }

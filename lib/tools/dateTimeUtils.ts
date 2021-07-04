@@ -1,10 +1,10 @@
 import moment from 'moment';
-import Validity from './validity';
+import { Validity } from './validity';
 
 // https://stackoverflow.com/a/6777470
 // https://stackoverflow.com/a/14523953
 
-export default class DateTimeUtils {
+export class DateTimeUtils {
   static parse(dateAsString: string): Date {
     if (!Validity.isValidString(dateAsString)) throw new Error('invalid date');
     return new Date(Date.parse(dateAsString));
@@ -30,5 +30,4 @@ export default class DateTimeUtils {
     if (!Validity.isValidDate(date)) throw new Error('invalid date');
     return moment(date).fromNow();
   }
-
 }

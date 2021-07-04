@@ -1,4 +1,6 @@
+import { IndexOptions } from 'mongodb';
+
 export interface IMongoIndexType {
-  fieldOrSpec: object; // eslint-disable-line @typescript-eslint/ban-types
-  options: object; // eslint-disable-line @typescript-eslint/ban-types
+  fieldOrSpec: string | any; // eslint-disable-line @typescript-eslint/no-explicit-any
+  options: IndexOptions;
 }
