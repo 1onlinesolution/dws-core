@@ -6,6 +6,8 @@ import { Validity } from '../tools';
 import 'winston-mongodb';
 
 export class FileLogger extends BaseLogger {
+  protected kind = 'file';
+
   constructor(options = DefaultFileOptions, levels = BaseLogger.Levels) {
     super(options, levels);
 

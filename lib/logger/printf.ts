@@ -20,7 +20,7 @@ const printf = (info: TransformableInfo): string => {
       log_text += metadata.stack;
     } else {
       const text = JSON.stringify(metadata);
-      if (text.length > 0) {
+      if (text !== '{}' && text.length > 0) {
         log_text += '\n';
         const extra = '\t' + text;
         log_text += extra;

@@ -9,7 +9,9 @@ import { AbstractConfigSetLevels } from 'winston/lib/winston/config';
 
 const { format, createLogger } = winston;
 
-export class BaseLogger {
+export abstract class BaseLogger {
+  protected abstract kind: string;
+
   private static DefaultMorganFormat = ':method :url :status :res[content-length] - :response-time ms';
 
   // Define your severity levels.
@@ -66,14 +68,35 @@ export class BaseLogger {
   }
 
   combinedFormat(): winston.Logform.Format {
+    if (this.kind === 'console') {
+      return format.combine(
+
+        // Add the message timestamp with the preferred format
+        format.timestamp({
+          format: 'YYYY-MM-DD HH:mm:ss',
+        }),
+
+        // Tell Winston that the logs must be colored
+        format.colorize({ all: true }),
+
+        format.label({ label: this.label }),
+        format.metadata({ fillExcept: ['message', 'level', 'timestamp', 'label'] }),
+
+        // Define the format of the message showing the timestamp, the level and the message
+        format.printf(printf),
+      );
+    }
+
     return format.combine(
+
       // Add the message timestamp with the preferred format
       format.timestamp({
         format: 'YYYY-MM-DD HH:mm:ss',
       }),
-      // Tell Winston that the logs must be colored
-      format.colorize({ all: true }),
+
       format.label({ label: this.label }),
+      format.metadata({ fillExcept: ['message', 'level', 'timestamp', 'label'] }),
+
       // Define the format of the message showing the timestamp, the level and the message
       format.printf(printf),
     );

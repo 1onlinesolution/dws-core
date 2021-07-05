@@ -8,6 +8,8 @@ import 'winston-mongodb';
 const { format } = winston;
 
 export class ConsoleLogger extends BaseLogger {
+  protected kind = 'console';
+
   constructor(options = DefaultConsoleOptions, levels = BaseLogger.Levels) {
     super(options, levels);
 

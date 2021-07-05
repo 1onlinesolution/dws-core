@@ -34,6 +34,19 @@ describe('FileLogger', () => {
     initialize.restore();
   });
 
+  // test('Constructor without stub', function () {
+  //   DefaultFileOptions.level = 'error';
+  //
+  //   const logger = new FileLogger(DefaultFileOptions);
+  //
+  //   expect(logger.label).toBe(DefaultFileOptions.label);
+  //   expect(logger.level).toBe(DefaultFileOptions.level);
+  //   expect(logger.usedTransports).not.toBeNull();
+  //   expect(logger.usedTransports.length).toBe(1);
+  //
+  //   logger.error('Hello');
+  // });
+
   test('Constructor throws when there is a misconfiguration', () => {
     expect(() => {
       DefaultFileOptions.filename = '';
