@@ -26,8 +26,8 @@ const defaultFileOptions_1 = require("./defaultFileOptions");
 const tools_1 = require("../tools");
 require("winston-mongodb");
 class FileLogger extends baseLogger_1.BaseLogger {
-    constructor(label = 'my label', level = 'info', options = defaultFileOptions_1.DefaultFileOptions) {
-        super(label, level, options);
+    constructor(options = defaultFileOptions_1.DefaultFileOptions, levels = baseLogger_1.BaseLogger.Levels) {
+        super(options, levels);
         this.logger = this.initialize();
         return this;
     }

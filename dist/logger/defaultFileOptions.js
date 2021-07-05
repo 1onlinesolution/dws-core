@@ -6,6 +6,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.DefaultFileOptions = void 0;
 const path_1 = __importDefault(require("path"));
 const DefaultFileOptions = {
+    // Label stored with entry object if defined.
+    label: 'file',
     // Level of messages that this transport should log (default: level set on parent logger).
     level: 'error',
     // The filename of the logfile to write output to.

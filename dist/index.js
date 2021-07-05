@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DataType = exports.ProductFeature = exports.ProductCategory = exports.OrderItem = exports.Order = exports.PaymentStatus = exports.OrderStatus = exports.OrderTerm = exports.EmailNotSent = exports.ApiClientApplication = exports.UserLogin = exports.UserStatistics = exports.UserRole = exports.Address = exports.DefaultMongoOptions = exports.DefaultFileOptions = exports.DefaultConsoleOptions = exports.MongoLogger = exports.ConsoleLogger = exports.FileLogger = exports.MongoDatabase = exports.MongoConnection = exports.BanUser = exports.JwtService = exports.EncryptionService = exports.PasswordService = exports.HttpStatus = exports.HttpStatusName = exports.HttpStatusCode = exports.Environment = exports.DateTimeUtils = exports.Converter = exports.Validity = exports.RegExpUtil = void 0;
+exports.DataType = exports.ProductFeature = exports.ProductCategory = exports.OrderItem = exports.Order = exports.PaymentStatus = exports.OrderStatus = exports.OrderTerm = exports.EmailNotSent = exports.ApiClientApplication = exports.UserLogin = exports.UserStatistics = exports.UserRole = exports.Address = exports.DefaultMongoOptions = exports.DefaultFileOptions = exports.DefaultConsoleOptions = exports.MongoLogger = exports.ConsoleLogger = exports.FileLogger = exports.BaseLogger = exports.MongoDatabase = exports.MongoConnection = exports.BanUser = exports.JwtService = exports.EncryptionService = exports.PasswordService = exports.HttpStatus = exports.HttpStatusName = exports.HttpStatusCode = exports.Environment = exports.DateTimeUtils = exports.Converter = exports.Validity = exports.RegExpUtil = void 0;
 var tools_1 = require("./tools");
 Object.defineProperty(exports, "RegExpUtil", { enumerable: true, get: function () { return tools_1.RegExpUtil; } });
 Object.defineProperty(exports, "Validity", { enumerable: true, get: function () { return tools_1.Validity; } });
@@ -20,6 +20,7 @@ var mongodb_1 = require("./mongodb");
 Object.defineProperty(exports, "MongoConnection", { enumerable: true, get: function () { return mongodb_1.MongoConnection; } });
 Object.defineProperty(exports, "MongoDatabase", { enumerable: true, get: function () { return mongodb_1.MongoDatabase; } });
 var logger_1 = require("./logger");
+Object.defineProperty(exports, "BaseLogger", { enumerable: true, get: function () { return logger_1.BaseLogger; } });
 Object.defineProperty(exports, "FileLogger", { enumerable: true, get: function () { return logger_1.FileLogger; } });
 Object.defineProperty(exports, "ConsoleLogger", { enumerable: true, get: function () { return logger_1.ConsoleLogger; } });
 Object.defineProperty(exports, "MongoLogger", { enumerable: true, get: function () { return logger_1.MongoLogger; } });

@@ -1,5 +1,5 @@
 declare const DefaultConsoleOptions: {
-    label: undefined;
+    label: string;
     level: string;
     silent: boolean;
 };

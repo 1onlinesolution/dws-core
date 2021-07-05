@@ -1,4 +1,4 @@
-import * as winston from 'winston';
+import winston from 'winston';
 import { BaseLogger } from './baseLogger';
 import { DefaultConsoleOptions } from './defaultConsoleOptions';
 import { printf } from './printf';
@@ -8,15 +8,15 @@ import 'winston-mongodb';
 const { format } = winston;
 
 export class ConsoleLogger extends BaseLogger {
-  constructor(label = 'my label', level = 'info', options = DefaultConsoleOptions) {
-    super(label, level, options);
+  constructor(options = DefaultConsoleOptions, levels = BaseLogger.Levels) {
+    super(options, levels);
 
     this.options.format = format.combine(
-      format.label({ label: this.label }),
-      format.colorize(),
       format.timestamp({
         format: 'YYYY-MM-DD HH:mm:ss',
       }),
+      format.colorize({ all: true }),
+      format.label({ label: this.label }),
       format.printf(printf),
     );
 

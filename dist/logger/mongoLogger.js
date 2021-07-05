@@ -26,8 +26,8 @@ const defaultMongoOptions_1 = require("./defaultMongoOptions");
 const tools_1 = require("../tools");
 require("winston-mongodb");
 class MongoLogger extends baseLogger_1.BaseLogger {
-    constructor(label = 'my label', level = 'info', options = defaultMongoOptions_1.DefaultMongoOptions) {
-        super(label, level, options);
+    constructor(options = defaultMongoOptions_1.DefaultMongoOptions, levels = baseLogger_1.BaseLogger.Levels) {
+        super(options, levels);
         this.logger = this.initialize();
         return this;
     }

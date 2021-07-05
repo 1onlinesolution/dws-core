@@ -1,5 +1,6 @@
 import * as winston from 'winston';
 declare const DefaultMongoOptions: {
+    label: string;
     level: string;
     db: string;
     options: {
@@ -14,7 +15,6 @@ declare const DefaultMongoOptions: {
     silent: boolean;
     decolorize: boolean;
     includeIds: boolean;
-    label: undefined;
     name: undefined;
     metaKey: string;
     format: winston.Logform.Format;

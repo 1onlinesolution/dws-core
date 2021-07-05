@@ -1,5 +1,6 @@
 const DefaultConsoleOptions = {
-  label: undefined,
+  // Label stored with entry object if defined.
+  label: 'console',
 
   // Level of messages that this transport should log (default: level set on parent logger).
   level: 'error',

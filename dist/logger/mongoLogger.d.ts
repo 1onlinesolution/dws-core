@@ -2,7 +2,8 @@ import * as winston from 'winston';
 import { BaseLogger } from './baseLogger';
 import 'winston-mongodb';
 export declare class MongoLogger extends BaseLogger {
-    constructor(label?: string, level?: string, options?: {
+    constructor(options?: {
+        label: string;
         level: string;
         db: string;
         options: {
@@ -17,10 +18,9 @@ export declare class MongoLogger extends BaseLogger {
         silent: boolean;
         decolorize: boolean;
         includeIds: boolean;
-        label: undefined;
         name: undefined;
         metaKey: string;
         format: winston.Logform.Format;
-    });
+    }, levels?: winston.config.AbstractConfigSetLevels);
     initialize(): winston.Logger;
 }

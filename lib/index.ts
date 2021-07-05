@@ -2,7 +2,7 @@ export { RegExpUtil, Validity, Converter, DateTimeUtils, Environment } from './t
 export { HttpStatusCode, HttpStatusName, HttpResponse, HttpStatus } from './http';
 export { PasswordService, EncryptionService, JwtService, BanUser } from './crypto';
 export { IMongoConnection, MongoConnection, IMongoDatabase, MongoDatabase } from './mongodb';
-export { FileLogger, ConsoleLogger, MongoLogger, DefaultConsoleOptions, DefaultFileOptions, DefaultMongoOptions } from './logger';
+export { BaseLogger, FileLogger, ConsoleLogger, MongoLogger, DefaultConsoleOptions, DefaultFileOptions, DefaultMongoOptions } from './logger';
 
 export {
   // address

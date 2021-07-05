@@ -1,6 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DefaultMongoOptions = exports.DefaultFileOptions = exports.DefaultConsoleOptions = exports.MongoLogger = exports.ConsoleLogger = exports.FileLogger = void 0;
+exports.DefaultMongoOptions = exports.DefaultFileOptions = exports.DefaultConsoleOptions = exports.MongoLogger = exports.ConsoleLogger = exports.FileLogger = exports.BaseLogger = void 0;
+const baseLogger_1 = require("./baseLogger");
+Object.defineProperty(exports, "BaseLogger", { enumerable: true, get: function () { return baseLogger_1.BaseLogger; } });
 const fileLogger_1 = require("./fileLogger");
 Object.defineProperty(exports, "FileLogger", { enumerable: true, get: function () { return fileLogger_1.FileLogger; } });
 const consoleLogger_1 = require("./consoleLogger");

@@ -1,4 +1,5 @@
 declare const DefaultFileOptions: {
+    label: string;
     level: string;
     filename: string;
     maxsize: number;

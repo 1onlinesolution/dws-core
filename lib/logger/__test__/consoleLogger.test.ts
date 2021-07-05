@@ -1,12 +1,20 @@
-import { ConsoleLogger, DefaultConsoleOptions } from '../index';
-
-DefaultConsoleOptions.level = 'info';
+import { BaseLogger, ConsoleLogger, DefaultConsoleOptions } from '../index';
 
 describe('ConsoleLogger', () => {
-  test('Default constructor', function() {
-    const logger = new ConsoleLogger('my label', 'info', DefaultConsoleOptions);
-    expect(logger.label).toBe('my label');
-    expect(logger.level).toBe('info');
+  test('Default Constructor', function() {
+    DefaultConsoleOptions.level = BaseLogger.DefaultLevel();
+    const logger = new ConsoleLogger(DefaultConsoleOptions);
+    expect(logger.label).toBe(DefaultConsoleOptions.label);
+    expect(logger.level).toBe(DefaultConsoleOptions.level);
+    expect(logger.usedTransports).not.toBeNull();
+    expect(logger.usedTransports.length).toBe(1);
+  });
+
+  test('Constructor', function() {
+    DefaultConsoleOptions.level = 'warn';
+    const logger = new ConsoleLogger(DefaultConsoleOptions);
+    expect(logger.label).toBe(DefaultConsoleOptions.label);
+    expect(logger.level).toBe(DefaultConsoleOptions.level);
     expect(logger.usedTransports).not.toBeNull();
     expect(logger.usedTransports.length).toBe(1);
   });
@@ -14,7 +22,7 @@ describe('ConsoleLogger', () => {
   test('Constructor throws when there is a misconfiguration', () => {
     expect(() => {
       DefaultConsoleOptions.level = 'aaa';
-      new ConsoleLogger('my label', 'info', DefaultConsoleOptions);
+      new ConsoleLogger(DefaultConsoleOptions);
     }).toThrow(/invalid configuration/);
   });
 

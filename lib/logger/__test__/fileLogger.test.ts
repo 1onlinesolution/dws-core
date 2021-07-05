@@ -3,13 +3,29 @@ import { FileLogger, DefaultFileOptions } from '../index';
 import { BaseLogger } from '../baseLogger';
 
 describe('FileLogger', () => {
-  test('Default constructor', function () {
+  test('Default Constructor', function () {
+    const initialize = Sinon.stub(FileLogger.prototype, 'initialize');
+
+    DefaultFileOptions.level = BaseLogger.DefaultLevel();
+    const logger = new FileLogger(DefaultFileOptions);
+    expect(logger.label).toBe(DefaultFileOptions.label);
+    expect(logger.level).toBe(DefaultFileOptions.level);
+    expect(logger.usedTransports).not.toBeNull();
+    expect(logger.usedTransports.length).toBe(0); // Normally it would be 1, and logger.usedTransports[0].name === 'file', but we use a stub...
+
+    Sinon.assert.calledOnce(initialize);
+
+    initialize.restore();
+  });
+
+  test('Constructor', function () {
     // Create a spy for the 'initialize' class method, because we do not want to create the logs/files
     const initialize = Sinon.stub(FileLogger.prototype, 'initialize');
 
-    const logger = new FileLogger('my label', 'info', DefaultFileOptions);
-    expect(logger.label).toBe('my label');
-    expect(logger.level).toBe('info');
+    DefaultFileOptions.level = 'error';
+    const logger = new FileLogger(DefaultFileOptions);
+    expect(logger.label).toBe(DefaultFileOptions.label);
+    expect(logger.level).toBe(DefaultFileOptions.level);
     expect(logger.usedTransports).not.toBeNull();
     expect(logger.usedTransports.length).toBe(0); // Normally it would be 1, and logger.usedTransports[0].name === 'file', but we use a stub...
 
@@ -21,7 +37,7 @@ describe('FileLogger', () => {
   test('Constructor throws when there is a misconfiguration', () => {
     expect(() => {
       DefaultFileOptions.filename = '';
-      new FileLogger('my label', 'info', DefaultFileOptions);
+      new FileLogger(DefaultFileOptions);
     }).toThrow(/invalid configuration/);
   });
 
@@ -30,7 +46,8 @@ describe('FileLogger', () => {
     const initialize = Sinon.stub(FileLogger.prototype, 'initialize');
     const info = Sinon.stub(BaseLogger.prototype, 'info');
 
-    const logger = new FileLogger('my label', 'info', DefaultFileOptions);
+    DefaultFileOptions.level = 'info';
+    const logger = new FileLogger(DefaultFileOptions);
     logger.info('Hello');
 
     Sinon.assert.calledOnce(initialize);
@@ -45,7 +62,8 @@ describe('FileLogger', () => {
     const initialize = Sinon.stub(FileLogger.prototype, 'initialize');
     const warn = Sinon.stub(BaseLogger.prototype, 'warn');
 
-    const logger = new FileLogger('my label', 'warn', DefaultFileOptions);
+    DefaultFileOptions.level = 'warn';
+    const logger = new FileLogger(DefaultFileOptions);
     logger.warn('Hello');
 
     Sinon.assert.calledOnce(initialize);
@@ -60,7 +78,8 @@ describe('FileLogger', () => {
     const initialize = Sinon.stub(FileLogger.prototype, 'initialize');
     const error = Sinon.stub(BaseLogger.prototype, 'error');
 
-    const logger = new FileLogger('my label', 'error', DefaultFileOptions);
+    DefaultFileOptions.level = 'error';
+    const logger = new FileLogger(DefaultFileOptions);
     logger.error('Hello');
 
     Sinon.assert.calledOnce(initialize);

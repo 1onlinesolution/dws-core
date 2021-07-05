@@ -23,6 +23,8 @@ exports.DefaultMongoOptions = void 0;
 const winston = __importStar(require("winston"));
 const { format } = winston;
 const DefaultMongoOptions = {
+    // Label stored with entry object if defined.
+    label: 'mongo',
     // Level of messages that this transport should log, defaults to 'info'.
     level: 'error',
     // MongoDB connection uri, pre-connected MongoClient object or promise which resolves to a pre-connected MongoClient object.
@@ -50,8 +52,6 @@ const DefaultMongoOptions = {
     decolorize: true,
     // Whether the returned logs should include the _id attribute settled by mongodb, defaults to false.
     includeIds: false,
-    // Label stored with entry object if defined.
-    label: undefined,
     // Transport instance identifier. Useful if you need to create multiple MongoDB transports.
     name: undefined,
     // Configure which key is used to store metadata in the logged info object.
