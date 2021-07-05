@@ -1,12 +1,13 @@
 {
   "name": "@1onlinesolution/dws-core",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "DWS Core utilities",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "directories": {
     "lib": "lib"
   },
+  "exports": "./dist/index.js",
   "scripts": {
     "patch": "npm version patch",
     "minor": "npm version minor",
