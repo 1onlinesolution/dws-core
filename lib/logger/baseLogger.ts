@@ -45,7 +45,7 @@ export class BaseLogger {
     if (!options) BaseLogger.throwConfigError();
     if (options.label === undefined) options.label = PasswordService.randomBytesAsToken(4);
     if (options.level === undefined) options.level = BaseLogger.DefaultLevel();
-    if (options.level !== 'info' && options.level !== 'warn' && options.level !== 'error') BaseLogger.throwConfigError();
+    if (options.level !== 'info' && options.level !== 'warn' && options.level !== 'error' && options.level !== 'http' && options.level !== 'debug') BaseLogger.throwConfigError();
     this.levels = levels;
     this.options = options;
     this.usedTransports = [];
