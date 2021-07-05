@@ -1,6 +1,6 @@
 {
   "name": "@1onlinesolution/dws-core",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "DWS Core utilities",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -33,6 +33,7 @@
     "@types/jsonwebtoken": "^8.5.2",
     "@types/mongodb": "^3.6.18",
     "@types/node": "^15.12.4",
+    "@types/sinon": "^10.0.2",
     "@typescript-eslint/eslint-plugin": "^4.28.0",
     "@typescript-eslint/parser": "^4.28.0",
     "dotenv": "^10.0.0",
@@ -40,6 +41,7 @@
     "eslint-plugin-security": "^1.4.0",
     "jest": "^27.0.6",
     "prettier": "^2.3.1",
+    "sinon": "^11.1.1",
     "ts-jest": "^27.0.3"
   },
   "dependencies": {
@@ -48,7 +50,9 @@
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.29.1",
     "mongodb": "^3.6.9",
-    "typescript": "^4.3.4"
+    "typescript": "^4.3.4",
+    "winston": "^3.3.3",
+    "winston-mongodb": "^5.0.7"
   },
   "eslintIgnore": [
     "node_modules",
