@@ -10,7 +10,7 @@ const printf = (info: TransformableInfo): string => {
   let log_text = `${timestamp} [${label}] - [${level}]: ${message}`;
 
   // *** TODO: remove this once you know why message contains a newline character
-  log_text.replace('\n', '');
+  log_text = log_text.replace('\n', '');
 
   if (metadata) {
     if (metadata instanceof Error) {
