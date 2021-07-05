@@ -6,6 +6,7 @@ export declare class ConsoleLogger extends BaseLogger {
         label: string;
         level: string;
         silent: boolean;
+        morganFormat: string;
     }, levels?: winston.config.AbstractConfigSetLevels);
     initialize(): winston.Logger;
 }

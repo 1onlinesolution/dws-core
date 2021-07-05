@@ -18,5 +18,6 @@ declare const DefaultMongoOptions: {
     name: undefined;
     metaKey: string;
     format: winston.Logform.Format;
+    morganFormat: string;
 };
 export { DefaultMongoOptions };

@@ -61,6 +61,8 @@ const DefaultMongoOptions = {
     format: format.combine(format.errors({ stack: true }), // log the full stack
     format.timestamp(), // get the time stamp part of the full log message
     format.metadata()),
+    // Format that will be used by morgan middleware
+    morganFormat: ':method :url :status :res[content-length] - :response-time ms',
 };
 exports.DefaultMongoOptions = DefaultMongoOptions;
 //# sourceMappingURL=defaultMongoOptions.js.map

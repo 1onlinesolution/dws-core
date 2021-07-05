@@ -12,6 +12,7 @@ export declare class FileLogger extends BaseLogger {
         maxRetries: number;
         zippedArchive: boolean;
         silent: boolean;
+        morganFormat: string;
     }, levels?: winston.config.AbstractConfigSetLevels);
     initialize(): winston.Logger;
 }

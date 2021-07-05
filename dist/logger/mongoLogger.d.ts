@@ -21,6 +21,7 @@ export declare class MongoLogger extends BaseLogger {
         name: undefined;
         metaKey: string;
         format: winston.Logform.Format;
+        morganFormat: string;
     }, levels?: winston.config.AbstractConfigSetLevels);
     initialize(): winston.Logger;
 }

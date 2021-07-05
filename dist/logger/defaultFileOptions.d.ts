@@ -8,5 +8,6 @@ declare const DefaultFileOptions: {
     maxRetries: number;
     zippedArchive: boolean;
     silent: boolean;
+    morganFormat: string;
 };
 export { DefaultFileOptions };

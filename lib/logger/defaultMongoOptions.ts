@@ -55,6 +55,9 @@ const DefaultMongoOptions = {
     format.timestamp(), // get the time stamp part of the full log message
     format.metadata(),
   ),
+
+  // Format that will be used by morgan middleware
+  morganFormat: ':method :url :status :res[content-length] - :response-time ms',
 };
 
 export { DefaultMongoOptions };

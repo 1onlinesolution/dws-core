@@ -8,6 +8,8 @@ const DefaultConsoleOptions = {
     level: 'error',
     // Boolean flag indicating whether to suppress output, defaults to false.
     silent: false,
+    // Format that will be used by morgan middleware
+    morganFormat: ':method :url :status :res[content-length] - :response-time ms',
 };
 exports.DefaultConsoleOptions = DefaultConsoleOptions;
 //# sourceMappingURL=defaultConsoleOptions.js.map

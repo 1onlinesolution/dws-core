@@ -78,6 +78,7 @@ class BaseLogger {
     }
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     morganMiddleware() {
+        const morganFormat = this.options.morganFormat || BaseLogger.DefaultMorganFormat;
         // Override the stream method by telling
         // Morgan to use our custom logger instead of the console.log.
         const stream = {
@@ -99,13 +100,14 @@ class BaseLogger {
         // The message format is made from tokens, and each token is
         // defined inside the Morgan library.
         // You can create your custom token to show what do you want from a request.
-        ':method :url :status :res[content-length] - :response-time ms', 
+        morganFormat, 
         // Options: in this case, I overwrote the stream and the skip logic.
         // See the methods above.
         { stream, skip });
     }
 }
 exports.BaseLogger = BaseLogger;
+BaseLogger.DefaultMorganFormat = ':method :url :status :res[content-length] - :response-time ms';
 // Define your severity levels.
 // With them, You can create log files,
 // see or hide levels based on the running ENV.

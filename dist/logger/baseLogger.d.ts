@@ -3,6 +3,7 @@ import * as Transport from 'winston-transport';
 import 'winston-mongodb';
 import { AbstractConfigSetLevels } from 'winston/lib/winston/config';
 export declare class BaseLogger {
+    private static DefaultMorganFormat;
     protected static Levels: AbstractConfigSetLevels;
     static Colors: {
         error: string;
