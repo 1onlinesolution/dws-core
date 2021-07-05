@@ -1,6 +1,6 @@
 {
   "name": "@1onlinesolution/dws-core",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "DWS Core utilities",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -113,7 +113,7 @@
     "setupFilesAfterEnv": [
       "./lib/test/setup.ts"
     ],
-    "collectCoverage": true,
+    "collectCoverage": false,
     "coverageReporters": [
       "json",
       "text",
