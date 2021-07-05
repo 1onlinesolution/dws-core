@@ -1,6 +1,6 @@
 {
   "name": "@1onlinesolution/dws-core",
-  "version": "0.0.40",
+  "version": "0.0.41",
   "description": "DWS Core utilities",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
