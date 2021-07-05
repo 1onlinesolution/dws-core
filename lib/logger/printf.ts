@@ -9,14 +9,18 @@ const printf = (info: TransformableInfo): string => {
   const metadata = info['metadata'];
   let log_text = `${timestamp} [${label}] - [${level}]: ${message}`;
   if (metadata) {
-    log_text += '\n';
     if (metadata instanceof Error) {
+      log_text += '\n';
       log_text += metadata.message;
       log_text += '\n';
       log_text += metadata.stack;
     } else {
-      const extra = '\t' + JSON.stringify(metadata);
-      log_text += extra;
+      const text = JSON.stringify(metadata);
+      if (text.length > 0) {
+        log_text += '\n';
+        const extra = '\t' + text;
+        log_text += extra;
+      }
     }
   }
   return log_text;
