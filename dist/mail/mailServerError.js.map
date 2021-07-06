@@ -1,0 +1,1 @@
+{"version":3,"file":"mailServerError.js","sourceRoot":"","sources":["../../lib/mail/mailServerError.ts"],"names":[],"mappings":";AAAA,wCAAwC;;;AAExC,MAAM,eAAgB,SAAQ,KAAK;IACjC,YAAY,OAAe;QACzB,KAAK,CAAC,OAAO,CAAC,CAAC;QACf,IAAI,CAAC,IAAI,GAAG,iBAAiB,CAAC;IAChC,CAAC;CACF;AAEQ,0CAAe"}

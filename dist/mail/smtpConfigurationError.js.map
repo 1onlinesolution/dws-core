@@ -1,0 +1,1 @@
+{"version":3,"file":"smtpConfigurationError.js","sourceRoot":"","sources":["../../lib/mail/smtpConfigurationError.ts"],"names":[],"mappings":";AAAA,wCAAwC;;;AAExC,MAAM,OAAO,GAAG,gDAAgD,CAAC;AAEjE,MAAM,sBAAuB,SAAQ,KAAK;IACxC,YAAY,OAAO,GAAG,OAAO;QAC3B,KAAK,CAAC,OAAO,CAAC,CAAC;QACf,IAAI,CAAC,IAAI,GAAG,wBAAwB,CAAC;IACvC,CAAC;CACF;AAEQ,wDAAsB"}
