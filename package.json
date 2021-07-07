@@ -1,6 +1,6 @@
 {
   "name": "@1onlinesolution/dws-core",
-  "version": "0.0.51",
+  "version": "0.0.52",
   "description": "DWS Core utilities",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -15,7 +15,8 @@
     "lint": "eslint lib/**/*.ts",
     "prebuild": "rm -rf dist && npm run lint",
     "build": "tsc",
-    "test": "npm run lint && jest --no-cache"
+    "test": "npm run lint && jest --no-cache",
+    "test:integration": "npm run lint && NODE_ENV=test_integration jest --no-cache"
   },
   "repository": {
     "type": "git",
