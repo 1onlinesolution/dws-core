@@ -30,7 +30,7 @@ describe.skip('*** Integration tests *** EmailService', () => {
   });
 
   test('...send sends one email', async () => {
-    if (!isIntegrationTest) {
+    if (isIntegrationTest) {
       const message = {
         from: process.env.EMAIL_USERNAME,
         to: process.env.EMAIL_USERNAME,
@@ -53,7 +53,7 @@ describe.skip('*** Integration tests *** EmailService', () => {
   });
 
   test('...send sends multiple emails', async () => {
-    if (!isIntegrationTest) {
+    if (isIntegrationTest) {
       const message = {
         from: process.env.EMAIL_USERNAME,
         to: `${process.env.EMAIL_USERNAME},${process.env.EMAIL_USERNAME2}`,
@@ -78,7 +78,7 @@ describe.skip('*** Integration tests *** EmailService', () => {
   });
 
   test('...send sends multiple emails through cc', async () => {
-    if (!isIntegrationTest) {
+    if (isIntegrationTest) {
       const message = {
         from: process.env.EMAIL_USERNAME,
         to: process.env.EMAIL_USERNAME,
@@ -103,7 +103,7 @@ describe.skip('*** Integration tests *** EmailService', () => {
   });
 
   test('...send sends multiple emails through bcc', async () => {
-    if (!isIntegrationTest) {
+    if (isIntegrationTest) {
       const message = {
         from: process.env.EMAIL_USERNAME,
         to: process.env.EMAIL_USERNAME,
