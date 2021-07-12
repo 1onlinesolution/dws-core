@@ -1,0 +1,1 @@
+{"version":3,"file":"errorNotFoundHandler.js","sourceRoot":"","sources":["../../lib/express/errorNotFoundHandler.ts"],"names":[],"mappings":";;;AAEA,MAAM,oBAAoB,GAAG,CAAC,GAAY,EAAE,GAAa,EAAE,IAAkB,EAAQ,EAAE;IACrF,MAAM,KAAK,GAAG,IAAI,KAAK,CAAC,WAAW,CAAC,CAAC;IACrC,IAAI,CAAC,KAAK,CAAC,CAAC;AACd,CAAC,CAAC;AAEO,oDAAoB"}

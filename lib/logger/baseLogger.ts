@@ -44,7 +44,7 @@ export abstract class BaseLogger {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/explicit-module-boundary-types
-  constructor(options: any, levels = BaseLogger.Levels) {
+  protected constructor(options: any, levels = BaseLogger.Levels) {
     if (!options) BaseLogger.throwConfigError();
     if (options.label === undefined) options.label = PasswordService.randomBytesAsToken(4);
     if (options.level === undefined) options.level = BaseLogger.DefaultLevel();

@@ -1,0 +1,1 @@
+{"version":3,"file":"databaseConnectionError.js","sourceRoot":"","sources":["../../../lib/models/error/databaseConnectionError.ts"],"names":[],"mappings":";;;AAAA,qCAA4C;AAE5C,MAAa,uBAAwB,SAAQ,KAAK;IAEhD;QACE,KAAK,CAAC,8BAA8B,CAAC,CAAC;QAEtC,IAAI,CAAC,IAAI,GAAG,yBAAyB,CAAC;QACtC,IAAI,CAAC,UAAU,GAAG,qBAAc,CAAC,WAAW,CAAC;IAC/C,CAAC;CACF;AARD,0DAQC"}

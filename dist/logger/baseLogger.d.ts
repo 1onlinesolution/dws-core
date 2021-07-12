@@ -17,7 +17,7 @@ export declare abstract class BaseLogger {
     usedTransports: Transport[];
     readonly options: any;
     protected logger: winston.Logger;
-    constructor(options: any, levels?: winston.config.AbstractConfigSetLevels);
+    protected constructor(options: any, levels?: winston.config.AbstractConfigSetLevels);
     get label(): string;
     get level(): string;
     protected static throwConfigError(): never;

@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DataType = exports.EmailNotSent = exports.ProductFeature = exports.Product = exports.ProductCategory = exports.OrderItem = exports.Order = exports.PaymentStatus = exports.OrderStatus = exports.OrderTerm = exports.ApiClientApplication = exports.UserLogin = exports.UserStatistics = exports.User = exports.UserRole = exports.Address = void 0;
+exports.RequestValidationError = exports.DatabaseConnectionError = exports.DataType = exports.EmailNotSent = exports.ProductFeature = exports.Product = exports.ProductCategory = exports.OrderItem = exports.Order = exports.PaymentStatus = exports.OrderStatus = exports.OrderTerm = exports.ApiClientApplication = exports.UserLogin = exports.UserStatistics = exports.User = exports.UserRole = exports.Address = void 0;
 var address_1 = require("./address");
 Object.defineProperty(exports, "Address", { enumerable: true, get: function () { return address_1.Address; } });
 var user_1 = require("./user");
@@ -28,4 +28,8 @@ var emailNotSent_1 = require("./emailNotSent");
 Object.defineProperty(exports, "EmailNotSent", { enumerable: true, get: function () { return emailNotSent_1.EmailNotSent; } });
 var dataType_1 = require("./dataType");
 Object.defineProperty(exports, "DataType", { enumerable: true, get: function () { return dataType_1.DataType; } });
+var databaseConnectionError_1 = require("./error/databaseConnectionError");
+Object.defineProperty(exports, "DatabaseConnectionError", { enumerable: true, get: function () { return databaseConnectionError_1.DatabaseConnectionError; } });
+var requestValidationError_1 = require("./error/requestValidationError");
+Object.defineProperty(exports, "RequestValidationError", { enumerable: true, get: function () { return requestValidationError_1.RequestValidationError; } });
 //# sourceMappingURL=index.js.map

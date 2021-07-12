@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DataType = exports.ProductFeature = exports.ProductCategory = exports.OrderItem = exports.Order = exports.PaymentStatus = exports.OrderStatus = exports.OrderTerm = exports.EmailNotSent = exports.ApiClientApplication = exports.UserLogin = exports.UserStatistics = exports.UserRole = exports.Address = exports.DefaultMongoOptions = exports.DefaultFileOptions = exports.DefaultConsoleOptions = exports.MongoLogger = exports.ConsoleLogger = exports.FileLogger = exports.BaseLogger = exports.MongoDatabase = exports.MongoConnection = exports.BanUser = exports.JwtService = exports.EncryptionService = exports.PasswordService = exports.HttpStatus = exports.HttpStatusName = exports.HttpStatusCode = exports.Environment = exports.DateTimeUtils = exports.Converter = exports.Validity = exports.RegExpUtil = void 0;
+exports.RequestValidationError = exports.DatabaseConnectionError = exports.DataType = exports.ProductFeature = exports.ProductCategory = exports.OrderItem = exports.Order = exports.PaymentStatus = exports.OrderStatus = exports.OrderTerm = exports.EmailNotSent = exports.ApiClientApplication = exports.UserLogin = exports.UserStatistics = exports.UserRole = exports.Address = exports.ErrorHandler = exports.ErrorNotFoundHandler = exports.DefaultMongoOptions = exports.DefaultFileOptions = exports.DefaultConsoleOptions = exports.MongoLogger = exports.ConsoleLogger = exports.FileLogger = exports.BaseLogger = exports.MongoDatabase = exports.MongoConnection = exports.BanUser = exports.JwtService = exports.EncryptionService = exports.PasswordService = exports.HttpStatus = exports.HttpStatusName = exports.HttpStatusCode = exports.Environment = exports.DateTimeUtils = exports.Converter = exports.Validity = exports.RegExpUtil = void 0;
 var tools_1 = require("./tools");
 Object.defineProperty(exports, "RegExpUtil", { enumerable: true, get: function () { return tools_1.RegExpUtil; } });
 Object.defineProperty(exports, "Validity", { enumerable: true, get: function () { return tools_1.Validity; } });
@@ -27,6 +27,9 @@ Object.defineProperty(exports, "MongoLogger", { enumerable: true, get: function 
 Object.defineProperty(exports, "DefaultConsoleOptions", { enumerable: true, get: function () { return logger_1.DefaultConsoleOptions; } });
 Object.defineProperty(exports, "DefaultFileOptions", { enumerable: true, get: function () { return logger_1.DefaultFileOptions; } });
 Object.defineProperty(exports, "DefaultMongoOptions", { enumerable: true, get: function () { return logger_1.DefaultMongoOptions; } });
+var express_1 = require("./express");
+Object.defineProperty(exports, "ErrorNotFoundHandler", { enumerable: true, get: function () { return express_1.ErrorNotFoundHandler; } });
+Object.defineProperty(exports, "ErrorHandler", { enumerable: true, get: function () { return express_1.ErrorHandler; } });
 var models_1 = require("./models");
 Object.defineProperty(exports, "Address", { enumerable: true, get: function () { return models_1.Address; } });
 Object.defineProperty(exports, "UserRole", { enumerable: true, get: function () { return models_1.UserRole; } });
@@ -45,4 +48,6 @@ Object.defineProperty(exports, "ProductCategory", { enumerable: true, get: funct
 Object.defineProperty(exports, "ProductFeature", { enumerable: true, get: function () { return models_1.ProductFeature; } });
 // dataType
 Object.defineProperty(exports, "DataType", { enumerable: true, get: function () { return models_1.DataType; } });
+Object.defineProperty(exports, "DatabaseConnectionError", { enumerable: true, get: function () { return models_1.DatabaseConnectionError; } });
+Object.defineProperty(exports, "RequestValidationError", { enumerable: true, get: function () { return models_1.RequestValidationError; } });
 //# sourceMappingURL=index.js.map

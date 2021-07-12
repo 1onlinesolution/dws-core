@@ -16,3 +16,5 @@ export { IForgotPassword } from './auth/forgotPassword';
 export { ITokenVerification } from './auth/tokenVerification';
 export { IAutoPasswordReset } from './auth/autoPasswordReset';
 export { IManualPasswordReset } from './auth/manualPasswordReset';
+export { DatabaseConnectionError } from './error/databaseConnectionError';
+export { RequestValidationError } from './error/requestValidationError';
