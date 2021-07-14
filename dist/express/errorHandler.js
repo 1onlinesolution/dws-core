@@ -4,7 +4,6 @@ exports.ErrorHandler = void 0;
 const http_1 = require("../http");
 const models_1 = require("../models");
 const ErrorHandler = (err, req, res, next) => {
-    console.log('Something went wrong', err);
     const result = {
         errors: [{ message: err.message }],
         statusCode: http_1.HttpStatusCode.BadRequest,

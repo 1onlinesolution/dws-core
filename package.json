@@ -1,6 +1,6 @@
 {
   "name": "@1onlinesolution/dws-core",
-  "version": "0.0.60",
+  "version": "0.0.61",
   "description": "DWS Core utilities",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -126,6 +126,10 @@
       "text",
       "lcov",
       "clover"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/dist/"
     ]
   }
 }
