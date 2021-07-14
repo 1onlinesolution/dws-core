@@ -1,13 +1,13 @@
-import { HttpStatusCode } from '../../http';
+import { HttpStatusCode, HttpStatusName } from '../../http';
 import { ErrorItem, ExpressErrorResponse } from '../../express';
 import { CustomError } from './customError';
 
-export class DatabaseConnectionError extends CustomError {
-  statusCode = HttpStatusCode.ServerError;
+export class NotFoundError extends CustomError {
+  statusCode = HttpStatusCode.NotFound;
 
   constructor() {
-    super('Error connecting to database');
-    this.name = 'DatabaseConnectionError';
+    super('Route not found');
+    this.name = 'NotFoundError';
   }
 
   response(): ExpressErrorResponse {
@@ -18,6 +18,6 @@ export class DatabaseConnectionError extends CustomError {
   }
 
   serializeErrors(): ErrorItem[] {
-    return [{ message: this.message }];
+    return [{ message: HttpStatusName.NotFound }];
   }
 }

@@ -2,11 +2,21 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DatabaseConnectionError = void 0;
 const http_1 = require("../../http");
-class DatabaseConnectionError extends Error {
+const customError_1 = require("./customError");
+class DatabaseConnectionError extends customError_1.CustomError {
     constructor() {
         super('Error connecting to database');
-        this.name = 'DatabaseConnectionError';
         this.statusCode = http_1.HttpStatusCode.ServerError;
+        this.name = 'DatabaseConnectionError';
+    }
+    response() {
+        return {
+            errors: [{ message: this.message }],
+            statusCode: this.statusCode,
+        };
+    }
+    serializeErrors() {
+        return [{ message: this.message }];
     }
 }
 exports.DatabaseConnectionError = DatabaseConnectionError;

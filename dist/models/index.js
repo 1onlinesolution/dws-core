@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.RequestValidationError = exports.DatabaseConnectionError = exports.DataType = exports.EmailNotSent = exports.ProductFeature = exports.Product = exports.ProductCategory = exports.OrderItem = exports.Order = exports.PaymentStatus = exports.OrderStatus = exports.OrderTerm = exports.ApiClientApplication = exports.UserLogin = exports.UserStatistics = exports.User = exports.UserRole = exports.Address = void 0;
+exports.RequestValidationError = exports.DatabaseConnectionError = exports.NotFoundError = exports.CustomError = exports.DataType = exports.EmailNotSent = exports.ProductFeature = exports.Product = exports.ProductCategory = exports.OrderItem = exports.Order = exports.PaymentStatus = exports.OrderStatus = exports.OrderTerm = exports.ApiClientApplication = exports.UserLogin = exports.UserStatistics = exports.User = exports.UserRole = exports.Address = void 0;
 var address_1 = require("./address");
 Object.defineProperty(exports, "Address", { enumerable: true, get: function () { return address_1.Address; } });
 var user_1 = require("./user");
@@ -28,6 +28,10 @@ var emailNotSent_1 = require("./emailNotSent");
 Object.defineProperty(exports, "EmailNotSent", { enumerable: true, get: function () { return emailNotSent_1.EmailNotSent; } });
 var dataType_1 = require("./dataType");
 Object.defineProperty(exports, "DataType", { enumerable: true, get: function () { return dataType_1.DataType; } });
+var customError_1 = require("./error/customError");
+Object.defineProperty(exports, "CustomError", { enumerable: true, get: function () { return customError_1.CustomError; } });
+var notFoundError_1 = require("./error/notFoundError");
+Object.defineProperty(exports, "NotFoundError", { enumerable: true, get: function () { return notFoundError_1.NotFoundError; } });
 var databaseConnectionError_1 = require("./error/databaseConnectionError");
 Object.defineProperty(exports, "DatabaseConnectionError", { enumerable: true, get: function () { return databaseConnectionError_1.DatabaseConnectionError; } });
 var requestValidationError_1 = require("./error/requestValidationError");

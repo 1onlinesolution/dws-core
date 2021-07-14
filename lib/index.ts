@@ -3,7 +3,7 @@ export { HttpStatusCode, HttpStatusName, HttpResponse, HttpStatus } from './http
 export { PasswordService, EncryptionService, JwtService, BanUser } from './crypto';
 export { IMongoConnection, MongoConnection, IMongoDatabase, MongoDatabase } from './mongodb';
 export { BaseLogger, FileLogger, ConsoleLogger, MongoLogger, DefaultConsoleOptions, DefaultFileOptions, DefaultMongoOptions } from './logger';
-export { ErrorNotFoundHandler, ErrorHandler } from './express';
+export { ErrorItem, ExpressErrorResponse, ErrorNotFoundHandler, ErrorHandler } from './express';
 
 export {
   // address
@@ -44,6 +44,6 @@ export {
   // dataType
   DataType,
 
-  DatabaseConnectionError, RequestValidationError,
+  CustomError, NotFoundError, DatabaseConnectionError, RequestValidationError,
 } from './models';
 

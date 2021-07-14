@@ -1,32 +1,22 @@
-import { ValidationError } from 'express-validator';
 import { Request, Response, NextFunction } from 'express';
 import { HttpStatusCode } from '../http';
-import { DatabaseConnectionError, RequestValidationError } from '../models';
+import { CustomError } from '../models';
+import { ExpressErrorResponse } from './expressErrorResponse';
 
-export interface ExpressErrorResponse {
-  message: string;
-  errors: ValidationError[];
-  statusCode: number;
-}
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const ErrorHandler = (err: Error, req: Request, res: Response, next: NextFunction): void => {
+const ErrorHandler = (err: Error, req: Request, res: Response, next: NextFunction): Response<ExpressErrorResponse> => { // eslint-disable-line @typescript-eslint/no-unused-vars
   console.log('Something went wrong', err);
 
   const result: ExpressErrorResponse = {
-    message: err.message,
-    errors: [],
+    errors: [{ message: err.message }],
     statusCode: HttpStatusCode.BadRequest,
   };
 
-  if (err instanceof RequestValidationError) {
-    result.errors = err.errors;
-    result.statusCode = err.statusCode;
-  } else if (err instanceof DatabaseConnectionError) {
+  if (err instanceof CustomError) {
+    result.errors = err.serializeErrors();
     result.statusCode = err.statusCode;
   }
 
-  res.status(HttpStatusCode.BadRequest).send(result);
+  return res.status(result.statusCode).send(result);
 };
 
 export { ErrorHandler };
