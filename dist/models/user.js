@@ -13,7 +13,7 @@ var UserRole;
     UserRole[UserRole["Admin"] = 4] = "Admin";
 })(UserRole = exports.UserRole || (exports.UserRole = {}));
 class User {
-    constructor({ _id = new mongodb_1.ObjectId(), first_name = '', last_name = '', user_name = '', email = '', password = '', company_name = '', license = '', roles = [UserRole.Customer], verified = false, verification_token = '', newsletter = true, stats = new userStatistics_1.UserStatistics(), api_client_id = new mongodb_1.ObjectId(), api_client_secret = '', jwt_access_token = '', jwt_refresh_token = '', } = {}) {
+    constructor({ _id = new mongodb_1.ObjectId(), first_name = '', last_name = '', user_name = '', email = '', password = '', company_name = '', license = '', roles = [UserRole.Customer], verified = false, verification_token = '', newsletter = true, stats = new userStatistics_1.UserStatistics(), api_client_id = '', api_client_secret = '', jwt_access_token = '', jwt_refresh_token = '', } = {}) {
         this._password = '';
         this._id = new mongodb_1.ObjectId();
         this.first_name = '';
@@ -27,7 +27,7 @@ class User {
         this.verification_token = '';
         this.newsletter = true;
         this.stats = new userStatistics_1.UserStatistics();
-        this.api_client_id = new mongodb_1.ObjectId();
+        this.api_client_id = '';
         this.api_client_secret = '';
         this.jwt_access_token = '';
         this.jwt_refresh_token = '';
@@ -148,6 +148,9 @@ class User {
             return new Error('invalid password');
         return null;
     }
+    static get clientIdLength() {
+        return 16;
+    }
     get fullName() {
         return `${this.first_name}, ${this.last_name}`;
     }
@@ -165,7 +168,7 @@ class User {
         };
     }
     get isApiClient() {
-        return tools_1.Validity.isValidString(this.api_client_id.toHexString(), 2) && tools_1.Validity.isValidString(this.api_client_secret, 2);
+        return tools_1.Validity.isValidString(this.api_client_id, 2) && tools_1.Validity.isValidString(this.api_client_secret, 2);
     }
     get isCustomer() {
         return this.roles.includes(UserRole.Customer);

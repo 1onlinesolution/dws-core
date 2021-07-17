@@ -22,4 +22,6 @@ export declare class MongoDatabase implements IMongoDatabase {
     static createDatabase(name: string, connectionString: string, connectionOptions?: {
         useUnifiedTopology: boolean;
     }): Promise<MongoDatabase | Error>;
+    static isMongoError(error: Error): boolean;
+    errorMessage(error: Error): string;
 }

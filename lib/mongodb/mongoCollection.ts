@@ -13,12 +13,19 @@ import {
   CollectionAggregationOptions,
   AggregationCursor,
   MongoCallback,
+  OptionalId,
 } from 'mongodb';
 import { IMongoDatabase, MongoDatabase } from './mongoDatabase';
 import { Validity } from '../tools';
 import { IMongoIndexType } from '../models';
 
 const DocumentsPerPage = 25;
+const DefaultWriteOptions = {
+  writeConcern: {
+    w: 'majority',
+    wtimeout: 100,
+  },
+};
 
 export interface IMongoCollection {
   database: IMongoDatabase;
@@ -112,7 +119,7 @@ export class MongoCollection implements IMongoCollection {
   // ===================================================================
   // insertOne operations
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types, @typescript-eslint/no-explicit-any
-  async insertOne(document: any, options = {}): Promise<any | null> {
+  async insertOne<TSchema>(document: OptionalId<TSchema>, options = {}): Promise<any | null> {
     // https://mongodb.github.io/node-mongodb-native/3.6/api/Collection.html#insertOne
     // https://mongodb.github.io/node-mongodb-native/3.6/api/Collection.html#~insertOneWriteOpResult
     await this.checkDocument(document);
@@ -122,17 +129,27 @@ export class MongoCollection implements IMongoCollection {
     return success ? insertedId : null;
   }
 
-  async insertOneWithWriteConcern(
-    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types, @typescript-eslint/no-explicit-any
-    document: any,
-    options = {
-      w: 'majority',
-      wtimeout: 100,
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    },
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  ): Promise<any | null> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  async insertOneWithWriteConcern<TSchema>(document: OptionalId<TSchema>, options = DefaultWriteOptions): Promise<any | null> {
     return await this.insertOne(document, options);
+  }
+
+  // ===================================================================
+  // insertMany operations
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  async insertMany<TSchema>(documents: Array<OptionalId<TSchema>>, options = {}): Promise<any> {
+    // https://mongodb.github.io/node-mongodb-native/3.6/api/Collection.html#insertOne
+    // https://mongodb.github.io/node-mongodb-native/3.6/api/Collection.html#~insertOneWriteOpResult
+    await this.checkDocuments(documents);
+    const operationResult = await this.collection.insertMany(documents, options);
+    const { result, insertedIds, insertedCount } = operationResult;
+    const success = result.ok === 1 && insertedCount >= 1;
+    return success ? insertedIds : null;
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  async insertManyWithWriteConcern<TSchema>(documents: Array<OptionalId<TSchema>>, options = DefaultWriteOptions): Promise<any> {
+    return await this.insertMany(documents, options);
   }
 
   // ===================================================================
@@ -260,6 +277,16 @@ export class MongoCollection implements IMongoCollection {
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types, @typescript-eslint/no-explicit-any
   checkDocument(document: any): Promise<boolean | Error> {
     return document ? Promise.resolve(true) : MongoCollection.badRequestErrorAsPromise('document');
+  }
+
+  checkDocuments<TSchema>(documents: Array<OptionalId<TSchema>>): Promise<boolean | Error> {
+    if (!documents) return MongoCollection.badRequestErrorAsPromise('documents');
+    let index = 0;
+    documents.forEach((item) => {
+      if (!item) return MongoCollection.badRequestErrorAsPromise(`invalid document with index ${index}`);
+      ++index;
+    });
+    return Promise.resolve(true);
   }
 
   static badRequestErrorAsPromise(label: string): Promise<Error> {

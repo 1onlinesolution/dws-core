@@ -2,6 +2,7 @@ import { ObjectId } from 'mongodb';
 import { Validity, DateTimeUtils } from '../tools';
 import { IUserStatistics, UserStatistics } from './userStatistics';
 import { IMongoIndexType } from './mongoIndexType';
+import { UserRegistrationData } from './auth/userRegistrationData';
 
 export enum UserRole {
   Customer = 0,
@@ -14,7 +15,7 @@ export enum UserRole {
 export interface IUserPayload {
   _id: ObjectId;
   first_name: string;
-  api_client_id: ObjectId;
+  api_client_id: string;
 }
 
 export interface IUser extends IUserPayload {
@@ -50,7 +51,7 @@ export class User implements IUser {
   verification_token = '';
   newsletter = true;
   stats = new UserStatistics();
-  api_client_id = new ObjectId();
+  api_client_id = '';
   api_client_secret = '';
   jwt_access_token = '';
   jwt_refresh_token = '';
@@ -71,7 +72,7 @@ export class User implements IUser {
     verification_token = '',
     newsletter = true,
     stats = new UserStatistics(),
-    api_client_id = new ObjectId(),
+    api_client_id = '',
     api_client_secret = '',
     jwt_access_token = '',
     jwt_refresh_token = '',
@@ -181,7 +182,7 @@ export class User implements IUser {
     return map;
   }
 
-  static checkForError(user: IUser, ignorePassword = false): Error | null {
+  static checkForError(user: UserRegistrationData, ignorePassword = false): Error | null {
     if (!user || !(user instanceof User)) return new Error('invalid user details');
     if (!Validity.isValidString(user.first_name, 2)) return new Error('invalid first name');
     if (!Validity.isValidString(user.last_name, 2)) return new Error('invalid last name');
@@ -189,6 +190,10 @@ export class User implements IUser {
     if (!Validity.isValidString(user.user_name, 6)) return new Error('invalid user name');
     if (!ignorePassword && !Validity.isValidPassword(user.password)) return new Error('invalid password');
     return null;
+  }
+
+  static get clientIdLength(): number {
+    return 16;
   }
 
   get fullName(): string {
@@ -212,7 +217,7 @@ export class User implements IUser {
   }
 
   get isApiClient(): boolean {
-    return Validity.isValidString(this.api_client_id.toHexString(), 2) && Validity.isValidString(this.api_client_secret, 2);
+    return Validity.isValidString(this.api_client_id, 2) && Validity.isValidString(this.api_client_secret, 2);
   }
 
   get isCustomer(): boolean {

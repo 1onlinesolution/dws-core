@@ -1,6 +1,29 @@
 "use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.RequestValidationError = exports.DatabaseConnectionError = exports.NotFoundError = exports.CustomError = exports.DataType = exports.ProductFeature = exports.ProductCategory = exports.OrderItem = exports.Order = exports.PaymentStatus = exports.OrderStatus = exports.OrderTerm = exports.EmailNotSent = exports.ApiClientApplication = exports.UserLogin = exports.UserStatistics = exports.UserRole = exports.Address = exports.ErrorHandler = exports.ErrorNotFoundHandler = exports.DefaultMongoOptions = exports.DefaultFileOptions = exports.DefaultConsoleOptions = exports.MongoLogger = exports.ConsoleLogger = exports.FileLogger = exports.BaseLogger = exports.MongoDatabase = exports.MongoConnection = exports.BanUser = exports.JwtService = exports.EncryptionService = exports.PasswordService = exports.HttpStatus = exports.HttpStatusName = exports.HttpStatusCode = exports.Environment = exports.DateTimeUtils = exports.Converter = exports.Validity = exports.RegExpUtil = void 0;
+exports.RequestValidationError = exports.DatabaseConnectionError = exports.NotFoundError = exports.CustomError = exports.DataType = exports.ProductFeature = exports.ProductCategory = exports.OrderItem = exports.Order = exports.PaymentStatus = exports.OrderStatus = exports.OrderTerm = exports.EmailNotSent = exports.ApiClientApplication = exports.UserLogin = exports.UserStatistics = exports.UserRole = exports.Address = exports.States = exports.Countries = exports.ObjectId = exports.ErrorHandler = exports.ErrorNotFoundHandler = exports.DefaultMongoOptions = exports.DefaultFileOptions = exports.DefaultConsoleOptions = exports.MongoLogger = exports.ConsoleLogger = exports.FileLogger = exports.BaseLogger = exports.MongoDatabase = exports.MongoConnection = exports.BanUser = exports.JwtService = exports.EncryptionService = exports.PasswordService = exports.HttpStatus = exports.HttpStatusName = exports.HttpStatusCode = exports.Environment = exports.DateTimeUtils = exports.Converter = exports.Validity = exports.RegExpUtil = void 0;
+const Countries = __importStar(require("./mongodb/data/countries.json"));
+exports.Countries = Countries;
+const States = __importStar(require("./mongodb/data/statesUS.json"));
+exports.States = States;
 var tools_1 = require("./tools");
 Object.defineProperty(exports, "RegExpUtil", { enumerable: true, get: function () { return tools_1.RegExpUtil; } });
 Object.defineProperty(exports, "Validity", { enumerable: true, get: function () { return tools_1.Validity; } });
@@ -30,6 +53,8 @@ Object.defineProperty(exports, "DefaultMongoOptions", { enumerable: true, get: f
 var express_1 = require("./express");
 Object.defineProperty(exports, "ErrorNotFoundHandler", { enumerable: true, get: function () { return express_1.ErrorNotFoundHandler; } });
 Object.defineProperty(exports, "ErrorHandler", { enumerable: true, get: function () { return express_1.ErrorHandler; } });
+var mongodb_2 = require("mongodb");
+Object.defineProperty(exports, "ObjectId", { enumerable: true, get: function () { return mongodb_2.ObjectId; } });
 var models_1 = require("./models");
 Object.defineProperty(exports, "Address", { enumerable: true, get: function () { return models_1.Address; } });
 Object.defineProperty(exports, "UserRole", { enumerable: true, get: function () { return models_1.UserRole; } });

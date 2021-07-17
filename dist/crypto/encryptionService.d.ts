@@ -18,10 +18,10 @@ export declare class EncryptionService {
         encoding?: crypto.Encoding | undefined;
     });
     createIV(): Promise<Buffer>;
-    encrypt(text: string): Promise<EncryptResult | Error>;
+    encrypt(text: string): Promise<EncryptResult>;
     encryptObject<T>(object: T): Promise<EncryptResult | Error>;
-    encryptCompact(text: string): Promise<string | Error>;
-    encryptObjectCompact<T>(object: T): Promise<string | Error>;
+    encryptCompact(text: string): Promise<string>;
+    encryptObjectCompact<T>(object: T): Promise<string>;
     decrypt(iv: string, encrypted: string): string;
     decryptCompact(text: string): string;
     decryptObjectCompact(encryptedText: string): any;

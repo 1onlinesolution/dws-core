@@ -12,6 +12,7 @@ export class FileLogger extends BaseLogger {
     super(options, levels);
 
     this.logger = this.initialize();
+    Object.freeze(this.logger);
     return this;
   }
 

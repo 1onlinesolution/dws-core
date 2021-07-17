@@ -23,6 +23,7 @@ export class ConsoleLogger extends BaseLogger {
     );
 
     this.logger = this.initialize();
+    Object.freeze(this.logger);
     return this;
   }
 

@@ -1,6 +1,6 @@
 import { ObjectId } from 'mongodb';
 
-export interface IManualPasswordReset {
+export interface UserManualPasswordResetData {
   _id: ObjectId;
   password: string;
 }

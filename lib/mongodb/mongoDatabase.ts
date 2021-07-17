@@ -1,4 +1,4 @@
-import { Db } from 'mongodb';
+import { Db, MongoError } from 'mongodb';
 import { MongoConnection } from './mongoConnection';
 import { Validity } from '../tools';
 
@@ -6,8 +6,11 @@ export interface IMongoDatabase {
   connectionString: string;
   name: string;
   database: Db;
+
   ensureCollectionExists(collectionName: string): Promise<void>;
+
   collectionExists(collectionName: string): Promise<boolean>;
+
   createCollection(collectionName: string): Promise<void>;
 }
 
@@ -73,5 +76,27 @@ export class MongoDatabase implements IMongoDatabase {
     } catch (err) {
       return Promise.reject(err);
     }
+  }
+
+  // === Error handling ===
+  //
+
+  static isMongoError(error: Error): boolean {
+    return error.name === 'MongoError';
+  }
+
+  errorMessage(error: Error): string {
+    if (MongoDatabase.isMongoError(error)) {
+      const mongoError = error as MongoError;
+      switch (mongoError.code) {
+        case 11000:
+          return 'attempt to insert a duplicate record in the database';
+
+        default:
+          return 'database error detected';
+      }
+    }
+
+    return error.message;
   }
 }

@@ -1,4 +1,4 @@
-export interface IRegistration {
+export interface UserRegistrationData {
     first_name: string;
     last_name: string;
     user_name: string;

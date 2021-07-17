@@ -4,6 +4,12 @@ exports.MongoCollection = void 0;
 const mongoDatabase_1 = require("./mongoDatabase");
 const tools_1 = require("../tools");
 const DocumentsPerPage = 25;
+const DefaultWriteOptions = {
+    writeConcern: {
+        w: 'majority',
+        wtimeout: 100,
+    },
+};
 class MongoCollection {
     constructor(database, name) {
         this.database = database;
@@ -96,14 +102,25 @@ class MongoCollection {
         const success = result.ok === 1 && insertedCount === 1;
         return success ? insertedId : null;
     }
-    async insertOneWithWriteConcern(
-    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types, @typescript-eslint/no-explicit-any
-    document, options = {
-        w: 'majority',
-        wtimeout: 100,
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    }) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    async insertOneWithWriteConcern(document, options = DefaultWriteOptions) {
         return await this.insertOne(document, options);
+    }
+    // ===================================================================
+    // insertMany operations
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    async insertMany(documents, options = {}) {
+        // https://mongodb.github.io/node-mongodb-native/3.6/api/Collection.html#insertOne
+        // https://mongodb.github.io/node-mongodb-native/3.6/api/Collection.html#~insertOneWriteOpResult
+        await this.checkDocuments(documents);
+        const operationResult = await this.collection.insertMany(documents, options);
+        const { result, insertedIds, insertedCount } = operationResult;
+        const success = result.ok === 1 && insertedCount >= 1;
+        return success ? insertedIds : null;
+    }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    async insertManyWithWriteConcern(documents, options = DefaultWriteOptions) {
+        return await this.insertMany(documents, options);
     }
     // ===================================================================
     // deleteOne operations
@@ -201,6 +218,17 @@ class MongoCollection {
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types, @typescript-eslint/no-explicit-any
     checkDocument(document) {
         return document ? Promise.resolve(true) : MongoCollection.badRequestErrorAsPromise('document');
+    }
+    checkDocuments(documents) {
+        if (!documents)
+            return MongoCollection.badRequestErrorAsPromise('documents');
+        let index = 0;
+        documents.forEach((item) => {
+            if (!item)
+                return MongoCollection.badRequestErrorAsPromise(`invalid document with index ${index}`);
+            ++index;
+        });
+        return Promise.resolve(true);
     }
     static badRequestErrorAsPromise(label) {
         const message = `Bad request: ${label}`;

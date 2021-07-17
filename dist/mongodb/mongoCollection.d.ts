@@ -1,4 +1,4 @@
-import { ObjectId, Collection, IndexOptions, CommonOptions, FilterQuery, WithoutProjection, FindOneOptions, UpdateQuery, UpdateOneOptions, MongoCountPreferences, SortOptionObject, CollectionAggregationOptions, AggregationCursor, MongoCallback } from 'mongodb';
+import { ObjectId, Collection, IndexOptions, CommonOptions, FilterQuery, WithoutProjection, FindOneOptions, UpdateQuery, UpdateOneOptions, MongoCountPreferences, SortOptionObject, CollectionAggregationOptions, AggregationCursor, MongoCallback, OptionalId } from 'mongodb';
 import { IMongoDatabase } from './mongoDatabase';
 import { IMongoIndexType } from '../models';
 export interface IMongoCollection {
@@ -14,11 +14,20 @@ export declare class MongoCollection implements IMongoCollection {
     indexExists(indexes: string | string[]): Promise<boolean | Error>;
     createIndex(fieldOrSpec: string | any, options: IndexOptions): Promise<string | Error>;
     createIndexes(indexMap: Map<string, IMongoIndexType>): Promise<any>;
-    insertOne(document: any, options?: {}): Promise<any | null>;
-    insertOneWithWriteConcern(document: any, options?: {
-        w: string;
-        wtimeout: number;
+    insertOne<TSchema>(document: OptionalId<TSchema>, options?: {}): Promise<any | null>;
+    insertOneWithWriteConcern<TSchema>(document: OptionalId<TSchema>, options?: {
+        writeConcern: {
+            w: string;
+            wtimeout: number;
+        };
     }): Promise<any | null>;
+    insertMany<TSchema>(documents: Array<OptionalId<TSchema>>, options?: {}): Promise<any>;
+    insertManyWithWriteConcern<TSchema>(documents: Array<OptionalId<TSchema>>, options?: {
+        writeConcern: {
+            w: string;
+            wtimeout: number;
+        };
+    }): Promise<any>;
     deleteOne<TSchema>(filter: FilterQuery<TSchema>, options?: CommonOptions & {
         bypassDocumentValidation?: boolean;
     }): Promise<boolean | Error>;
@@ -36,5 +45,6 @@ export declare class MongoCollection implements IMongoCollection {
     aggregate<TSchema>(pipeline: object[] | undefined, options?: CollectionAggregationOptions, callback?: MongoCallback<AggregationCursor<TSchema>>): AggregationCursor<TSchema>;
     checkFilter<TSchema>(filter: FilterQuery<TSchema>): Promise<boolean | Error>;
     checkDocument(document: any): Promise<boolean | Error>;
+    checkDocuments<TSchema>(documents: Array<OptionalId<TSchema>>): Promise<boolean | Error>;
     static badRequestErrorAsPromise(label: string): Promise<Error>;
 }

@@ -51,6 +51,23 @@ class MongoDatabase {
             return Promise.reject(err);
         }
     }
+    // === Error handling ===
+    //
+    static isMongoError(error) {
+        return error.name === 'MongoError';
+    }
+    errorMessage(error) {
+        if (MongoDatabase.isMongoError(error)) {
+            const mongoError = error;
+            switch (mongoError.code) {
+                case 11000:
+                    return 'attempt to insert a duplicate record in the database';
+                default:
+                    return 'database error detected';
+            }
+        }
+        return error.message;
+    }
 }
 exports.MongoDatabase = MongoDatabase;
 //# sourceMappingURL=mongoDatabase.js.map

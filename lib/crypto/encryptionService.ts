@@ -58,7 +58,7 @@ export class EncryptionService {
     return PasswordService.randomBytes(this.iv_length);
   }
 
-  async encrypt(text: string): Promise<EncryptResult | Error> {
+  async encrypt(text: string): Promise<EncryptResult> {
     try {
       const iv = await this.createIV();
       const cipher = crypto.createCipheriv(this.algorithm, this.key, iv, undefined);
@@ -84,7 +84,7 @@ export class EncryptionService {
     }
   }
 
-  async encryptCompact(text: string): Promise<string | Error> {
+  async encryptCompact(text: string): Promise<string> {
     try {
       const result = (await this.encrypt(text)) as EncryptResult;
       return `${result.iv}:${result.encrypted}`;
@@ -93,7 +93,7 @@ export class EncryptionService {
     }
   }
 
-  async encryptObjectCompact<T>(object: T): Promise<string | Error> {
+  async encryptObjectCompact<T>(object: T): Promise<string> {
     try {
       const result = (await this.encryptObject(object)) as EncryptResult;
       return `${result.iv}:${result.encrypted}`;

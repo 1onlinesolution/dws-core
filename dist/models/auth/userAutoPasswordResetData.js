@@ -1,3 +1,3 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-//# sourceMappingURL=tokenVerification.js.map
+//# sourceMappingURL=userAutoPasswordResetData.js.map

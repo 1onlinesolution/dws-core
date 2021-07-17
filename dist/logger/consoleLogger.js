@@ -18,6 +18,7 @@ class ConsoleLogger extends baseLogger_1.BaseLogger {
             format: 'YYYY-MM-DD HH:mm:ss',
         }), format.colorize({ all: true }), format.label({ label: this.label }), format.printf(printf_1.printf));
         this.logger = this.initialize();
+        Object.freeze(this.logger);
         return this;
     }
     initialize() {

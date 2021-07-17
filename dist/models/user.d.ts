@@ -1,6 +1,7 @@
 import { ObjectId } from 'mongodb';
 import { IUserStatistics, UserStatistics } from './userStatistics';
 import { IMongoIndexType } from './mongoIndexType';
+import { UserRegistrationData } from './auth/userRegistrationData';
 export declare enum UserRole {
     Customer = 0,
     Employee = 1,
@@ -11,7 +12,7 @@ export declare enum UserRole {
 export interface IUserPayload {
     _id: ObjectId;
     first_name: string;
-    api_client_id: ObjectId;
+    api_client_id: string;
 }
 export interface IUser extends IUserPayload {
     last_name: string;
@@ -45,7 +46,7 @@ export declare class User implements IUser {
     verification_token: string;
     newsletter: boolean;
     stats: UserStatistics;
-    api_client_id: ObjectId;
+    api_client_id: string;
     api_client_secret: string;
     jwt_access_token: string;
     jwt_refresh_token: string;
@@ -65,13 +66,14 @@ export declare class User implements IUser {
         verification_token?: string | undefined;
         newsletter?: boolean | undefined;
         stats?: UserStatistics | undefined;
-        api_client_id?: ObjectId | undefined;
+        api_client_id?: string | undefined;
         api_client_secret?: string | undefined;
         jwt_access_token?: string | undefined;
         jwt_refresh_token?: string | undefined;
     });
     static get indexMap(): Map<string, IMongoIndexType>;
-    static checkForError(user: IUser, ignorePassword?: boolean): Error | null;
+    static checkForError(user: UserRegistrationData, ignorePassword?: boolean): Error | null;
+    static get clientIdLength(): number;
     get fullName(): string;
     get idAsString(): string;
     get password(): string;

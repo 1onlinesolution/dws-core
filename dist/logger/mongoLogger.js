@@ -30,6 +30,7 @@ class MongoLogger extends baseLogger_1.BaseLogger {
         super(options, levels);
         this.kind = 'mongo';
         this.logger = this.initialize();
+        Object.freeze(this.logger);
         return this;
     }
     initialize() {

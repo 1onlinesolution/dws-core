@@ -30,6 +30,7 @@ class FileLogger extends baseLogger_1.BaseLogger {
         super(options, levels);
         this.kind = 'file';
         this.logger = this.initialize();
+        Object.freeze(this.logger);
         return this;
     }
     initialize() {
