@@ -14,7 +14,7 @@ const DefaultMongoClientOptions: MongoClientOptions = {
 export class MongoConnection implements IMongoConnection {
   private readonly _connectionString: string;
   private readonly _options: MongoClientOptions = DefaultMongoClientOptions;
-  private readonly _mongoClient: MongoClient;
+  private _mongoClient: MongoClient;
 
   constructor(connectionString: string, options = DefaultMongoClientOptions) {
     if (!Validity.isValidString(connectionString, 6)) throw new Error('invalid connection string');
@@ -43,7 +43,7 @@ export class MongoConnection implements IMongoConnection {
     return this._mongoClient.isConnected();
   }
 
-  async connect(): Promise<MongoClient | Error> {
+  async connect(): Promise<void> {
     // * * * * *
     // N O T E : https://www.compose.com/articles/connection-pooling-with-mongodb/
     //           Do not use connect/close pair per each db action.
@@ -52,19 +52,17 @@ export class MongoConnection implements IMongoConnection {
     if (this.isConnected) return Promise.reject(new Error('Mongo client is already connected'));
 
     try {
-      await this._mongoClient.connect();
-      return this._mongoClient;
+      this._mongoClient = await this._mongoClient.connect();
     } catch (err) {
       return Promise.reject(err);
     }
   }
 
-  async close(): Promise<MongoClient | Error> {
+  async close(): Promise<void> {
     if (!this.isConnected) return Promise.reject(new Error('Mongo client is not connected'));
 
     try {
       await this._mongoClient.close();
-      return this._mongoClient;
     } catch (err) {
       return Promise.reject(err);
     }

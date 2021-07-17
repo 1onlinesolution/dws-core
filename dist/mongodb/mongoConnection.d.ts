@@ -7,14 +7,14 @@ export interface IMongoConnection {
 export declare class MongoConnection implements IMongoConnection {
     private readonly _connectionString;
     private readonly _options;
-    private readonly _mongoClient;
+    private _mongoClient;
     constructor(connectionString: string, options?: MongoClientOptions);
     get mongoClient(): MongoClient;
     get options(): MongoClientOptions;
     get connectionString(): string;
     get isConnected(): boolean;
-    connect(): Promise<MongoClient | Error>;
-    close(): Promise<MongoClient | Error>;
+    connect(): Promise<void>;
+    close(): Promise<void>;
     database(name: string, options?: {
         noListener: boolean;
         returnNonCachedInstance: boolean;

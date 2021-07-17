@@ -19,7 +19,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.RequestValidationError = exports.DatabaseConnectionError = exports.NotFoundError = exports.CustomError = exports.DataType = exports.ProductFeature = exports.ProductCategory = exports.OrderItem = exports.Order = exports.PaymentStatus = exports.OrderStatus = exports.OrderTerm = exports.EmailNotSent = exports.ApiClientApplication = exports.UserLogin = exports.UserStatistics = exports.UserRole = exports.Address = exports.States = exports.Countries = exports.ObjectId = exports.ErrorHandler = exports.ErrorNotFoundHandler = exports.DefaultMongoOptions = exports.DefaultFileOptions = exports.DefaultConsoleOptions = exports.MongoLogger = exports.ConsoleLogger = exports.FileLogger = exports.BaseLogger = exports.MongoCollection = exports.MongoDatabase = exports.MongoConnection = exports.BanUser = exports.JwtService = exports.EncryptionService = exports.PasswordService = exports.HttpStatus = exports.HttpStatusName = exports.HttpStatusCode = exports.Environment = exports.DateTimeUtils = exports.Converter = exports.Validity = exports.RegExpUtil = void 0;
+exports.RequestValidationError = exports.DatabaseConnectionError = exports.NotFoundError = exports.CustomError = exports.DataType = exports.ProductFeature = exports.ProductCategory = exports.OrderItem = exports.Order = exports.PaymentStatus = exports.OrderStatus = exports.OrderTerm = exports.EmailNotSent = exports.ApiClientApplication = exports.UserLogin = exports.UserStatistics = exports.UserRole = exports.Address = exports.States = exports.Countries = exports.MongoError = exports.Db = exports.ObjectId = exports.ErrorHandler = exports.ErrorNotFoundHandler = exports.DefaultMongoOptions = exports.DefaultFileOptions = exports.DefaultConsoleOptions = exports.MongoLogger = exports.ConsoleLogger = exports.FileLogger = exports.BaseLogger = exports.MongoCollection = exports.MongoDatabase = exports.MongoConnection = exports.BanUser = exports.JwtService = exports.EncryptionService = exports.PasswordService = exports.HttpStatus = exports.HttpStatusName = exports.HttpStatusCode = exports.Environment = exports.DateTimeUtils = exports.Converter = exports.Validity = exports.RegExpUtil = void 0;
 const Countries = __importStar(require("./mongodb/data/countries.json"));
 exports.Countries = Countries;
 const States = __importStar(require("./mongodb/data/statesUS.json"));
@@ -56,6 +56,8 @@ Object.defineProperty(exports, "ErrorNotFoundHandler", { enumerable: true, get: 
 Object.defineProperty(exports, "ErrorHandler", { enumerable: true, get: function () { return express_1.ErrorHandler; } });
 var mongodb_2 = require("mongodb");
 Object.defineProperty(exports, "ObjectId", { enumerable: true, get: function () { return mongodb_2.ObjectId; } });
+Object.defineProperty(exports, "Db", { enumerable: true, get: function () { return mongodb_2.Db; } });
+Object.defineProperty(exports, "MongoError", { enumerable: true, get: function () { return mongodb_2.MongoError; } });
 var models_1 = require("./models");
 Object.defineProperty(exports, "Address", { enumerable: true, get: function () { return models_1.Address; } });
 Object.defineProperty(exports, "UserRole", { enumerable: true, get: function () { return models_1.UserRole; } });

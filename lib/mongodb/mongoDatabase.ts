@@ -62,17 +62,16 @@ export class MongoDatabase implements IMongoDatabase {
     return !!collection;
   }
 
-  static async createDatabase(
-    name: string,
-    connectionString: string,
-    connectionOptions = {
-      useUnifiedTopology: true,
-    },
-  ): Promise<MongoDatabase | Error> {
+  async connect(): Promise<void> {
+    // * * * * *
+    // N O T E : https://www.compose.com/articles/connection-pooling-with-mongodb/
+    //           Do not use connect/close pair per each db action.
+    //           Instead use one connection throughout the application.
+    // * * * * *
+    if (this.isConnected) return Promise.reject(new Error('Mongo client is already connected'));
+
     try {
-      const connection = new MongoConnection(connectionString, connectionOptions);
-      await connection.connect();
-      return new MongoDatabase(connection.connectionString, name);
+      await this._mongoConnection.connect();
     } catch (err) {
       return Promise.reject(err);
     }

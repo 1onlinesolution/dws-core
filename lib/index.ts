@@ -8,7 +8,7 @@ export { IMongoConnection, MongoConnection, IMongoDatabase, MongoDatabase, IMong
 export { BaseLogger, FileLogger, ConsoleLogger, MongoLogger, DefaultConsoleOptions, DefaultFileOptions, DefaultMongoOptions } from './logger';
 export { ErrorItem, ExpressErrorResponse, ErrorNotFoundHandler, ErrorHandler } from './express';
 export { Algorithm } from 'jsonwebtoken';
-export { ObjectId, UpdateQuery } from 'mongodb';
+export { ObjectId, Db, MongoError, UpdateQuery } from 'mongodb';
 
 export { Countries, States };
 

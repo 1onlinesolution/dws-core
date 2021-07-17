@@ -39,8 +39,7 @@ class MongoConnection {
         if (this.isConnected)
             return Promise.reject(new Error('Mongo client is already connected'));
         try {
-            await this._mongoClient.connect();
-            return this._mongoClient;
+            this._mongoClient = await this._mongoClient.connect();
         }
         catch (err) {
             return Promise.reject(err);
@@ -51,7 +50,6 @@ class MongoConnection {
             return Promise.reject(new Error('Mongo client is not connected'));
         try {
             await this._mongoClient.close();
-            return this._mongoClient;
         }
         catch (err) {
             return Promise.reject(err);
