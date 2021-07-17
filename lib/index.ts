@@ -18,6 +18,7 @@ export {
   Address,
   // user
   IUser,
+  User,
   UserRole,
   IUserStatistics,
   UserStatistics,
