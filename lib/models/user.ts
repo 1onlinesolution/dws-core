@@ -2,7 +2,6 @@ import { ObjectId } from 'mongodb';
 import { Validity, DateTimeUtils } from '../tools';
 import { IUserStatistics, UserStatistics } from './userStatistics';
 import { IMongoIndexType } from './mongoIndexType';
-import { UserRegistrationData } from './auth/userRegistrationData';
 
 export enum UserRole {
   Customer = 0,
@@ -38,12 +37,12 @@ export interface IUser extends IUserPayload {
 }
 
 export class User implements IUser {
-  private _password = '';
   _id = new ObjectId();
   first_name = '';
   last_name = '';
   user_name = '';
   email = '';
+  password = '';
   company_name = '';
   license = '';
   roles = [UserRole.Customer];
@@ -93,14 +92,9 @@ export class User implements IUser {
     this.api_client_secret = api_client_secret;
     this.jwt_access_token = jwt_access_token;
     this.jwt_refresh_token = jwt_refresh_token;
+    this.password = password;
 
-    let ignorePassword = true;
-    if (password !== undefined) {
-      ignorePassword = false;
-      this._password = password;
-    }
-
-    const error = User.checkForError(this, ignorePassword);
+    const error = User.checkForError(this);
     if (error) throw error;
 
     return this;
@@ -182,13 +176,14 @@ export class User implements IUser {
     return map;
   }
 
-  static checkForError(user: UserRegistrationData, ignorePassword = false): Error | null {
-    if (!user || !(user instanceof User)) return new Error('invalid user details');
+  static checkForError(user: User): Error | null {
+    if (!user) return new Error('invalid user details');
     if (!Validity.isValidString(user.first_name, 2)) return new Error('invalid first name');
     if (!Validity.isValidString(user.last_name, 2)) return new Error('invalid last name');
     if (!Validity.isValidEmail(user.email)) return new Error('invalid email');
     if (!Validity.isValidString(user.user_name, 6)) return new Error('invalid user name');
-    if (!ignorePassword && !Validity.isValidPassword(user.password)) return new Error('invalid password');
+    // Do not test the validity of the password, it will be done at an upper level
+    if (!Validity.isValidString(user.password, 8)) return new Error('invalid password');
     return null;
   }
 
@@ -202,10 +197,6 @@ export class User implements IUser {
 
   get idAsString(): string {
     return `${this._id.toHexString()}`;
-  }
-
-  get password(): string {
-    return this._password;
   }
 
   get getPayloadForToken(): IUserPayload {

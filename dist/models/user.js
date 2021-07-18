@@ -14,12 +14,12 @@ var UserRole;
 })(UserRole = exports.UserRole || (exports.UserRole = {}));
 class User {
     constructor({ _id = new mongodb_1.ObjectId(), first_name = '', last_name = '', user_name = '', email = '', password = '', company_name = '', license = '', roles = [UserRole.Customer], verified = false, verification_token = '', newsletter = true, stats = new userStatistics_1.UserStatistics(), api_client_id = '', api_client_secret = '', jwt_access_token = '', jwt_refresh_token = '', } = {}) {
-        this._password = '';
         this._id = new mongodb_1.ObjectId();
         this.first_name = '';
         this.last_name = '';
         this.user_name = '';
         this.email = '';
+        this.password = '';
         this.company_name = '';
         this.license = '';
         this.roles = [UserRole.Customer];
@@ -49,12 +49,8 @@ class User {
         this.api_client_secret = api_client_secret;
         this.jwt_access_token = jwt_access_token;
         this.jwt_refresh_token = jwt_refresh_token;
-        let ignorePassword = true;
-        if (password !== undefined) {
-            ignorePassword = false;
-            this._password = password;
-        }
-        const error = User.checkForError(this, ignorePassword);
+        this.password = password;
+        const error = User.checkForError(this);
         if (error)
             throw error;
         return this;
@@ -133,8 +129,8 @@ class User {
         });
         return map;
     }
-    static checkForError(user, ignorePassword = false) {
-        if (!user || !(user instanceof User))
+    static checkForError(user) {
+        if (!user)
             return new Error('invalid user details');
         if (!tools_1.Validity.isValidString(user.first_name, 2))
             return new Error('invalid first name');
@@ -144,7 +140,8 @@ class User {
             return new Error('invalid email');
         if (!tools_1.Validity.isValidString(user.user_name, 6))
             return new Error('invalid user name');
-        if (!ignorePassword && !tools_1.Validity.isValidPassword(user.password))
+        // Do not test the validity of the password, it will be done at an upper level
+        if (!tools_1.Validity.isValidString(user.password, 8))
             return new Error('invalid password');
         return null;
     }
@@ -156,9 +153,6 @@ class User {
     }
     get idAsString() {
         return `${this._id.toHexString()}`;
-    }
-    get password() {
-        return this._password;
     }
     get getPayloadForToken() {
         return {

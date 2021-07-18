@@ -1,7 +1,6 @@
 import { ObjectId } from 'mongodb';
 import { IUserStatistics, UserStatistics } from './userStatistics';
 import { IMongoIndexType } from './mongoIndexType';
-import { UserRegistrationData } from './auth/userRegistrationData';
 export declare enum UserRole {
     Customer = 0,
     Employee = 1,
@@ -33,12 +32,12 @@ export interface IUser extends IUserPayload {
     modified_at: Date;
 }
 export declare class User implements IUser {
-    private _password;
     _id: ObjectId;
     first_name: string;
     last_name: string;
     user_name: string;
     email: string;
+    password: string;
     company_name: string;
     license: string;
     roles: UserRole[];
@@ -72,11 +71,10 @@ export declare class User implements IUser {
         jwt_refresh_token?: string | undefined;
     });
     static get indexMap(): Map<string, IMongoIndexType>;
-    static checkForError(user: UserRegistrationData, ignorePassword?: boolean): Error | null;
+    static checkForError(user: User): Error | null;
     static get clientIdLength(): number;
     get fullName(): string;
     get idAsString(): string;
-    get password(): string;
     get getPayloadForToken(): IUserPayload;
     get isApiClient(): boolean;
     get isCustomer(): boolean;

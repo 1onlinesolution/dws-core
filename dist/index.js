@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.RequestValidationError = exports.DatabaseConnectionError = exports.NotFoundError = exports.CustomError = exports.DataType = exports.ProductFeature = exports.ProductCategory = exports.OrderItem = exports.Order = exports.PaymentStatus = exports.OrderStatus = exports.OrderTerm = exports.EmailNotSent = exports.ApiClientApplication = exports.UserLogin = exports.UserStatistics = exports.UserRole = exports.User = exports.Address = exports.MongoError = exports.Db = exports.ObjectId = exports.ErrorHandler = exports.ErrorNotFoundHandler = exports.DefaultMongoOptions = exports.DefaultFileOptions = exports.DefaultConsoleOptions = exports.MongoLogger = exports.ConsoleLogger = exports.FileLogger = exports.BaseLogger = exports.MongoCollection = exports.MongoDatabase = exports.MongoConnection = exports.BanUser = exports.JwtService = exports.EncryptionService = exports.PasswordService = exports.HttpStatus = exports.HttpStatusName = exports.HttpStatusCode = exports.Environment = exports.DateTimeUtils = exports.Converter = exports.Validity = exports.RegExpUtil = void 0;
+exports.DatabaseConnectionError = exports.NotFoundError = exports.CustomError = exports.DataType = exports.ProductFeature = exports.ProductCategory = exports.OrderItem = exports.Order = exports.PaymentStatus = exports.OrderStatus = exports.OrderTerm = exports.EmailNotSent = exports.ApiClientApplication = exports.UserLogin = exports.UserStatistics = exports.UserRole = exports.User = exports.Address = exports.validationResult = exports.check = exports.body = exports.MongoError = exports.Db = exports.ObjectId = exports.FormFieldValidator = exports.ErrorHandler = exports.ErrorNotFoundHandler = exports.DefaultMongoOptions = exports.DefaultFileOptions = exports.DefaultConsoleOptions = exports.MongoLogger = exports.ConsoleLogger = exports.FileLogger = exports.BaseLogger = exports.MongoCollection = exports.MongoDatabase = exports.MongoConnection = exports.BanUser = exports.JwtService = exports.EncryptionService = exports.PasswordService = exports.HttpUtils = exports.HttpStatus = exports.HttpStatusName = exports.HttpStatusCode = exports.Environment = exports.DateTimeUtils = exports.Converter = exports.Validity = exports.RegExpUtil = void 0;
+exports.UserEmailOrNameExistsError = exports.RequestValidationError = void 0;
 var tools_1 = require("./tools");
 Object.defineProperty(exports, "RegExpUtil", { enumerable: true, get: function () { return tools_1.RegExpUtil; } });
 Object.defineProperty(exports, "Validity", { enumerable: true, get: function () { return tools_1.Validity; } });
@@ -11,6 +12,7 @@ var http_1 = require("./http");
 Object.defineProperty(exports, "HttpStatusCode", { enumerable: true, get: function () { return http_1.HttpStatusCode; } });
 Object.defineProperty(exports, "HttpStatusName", { enumerable: true, get: function () { return http_1.HttpStatusName; } });
 Object.defineProperty(exports, "HttpStatus", { enumerable: true, get: function () { return http_1.HttpStatus; } });
+Object.defineProperty(exports, "HttpUtils", { enumerable: true, get: function () { return http_1.HttpUtils; } });
 var crypto_1 = require("./crypto");
 Object.defineProperty(exports, "PasswordService", { enumerable: true, get: function () { return crypto_1.PasswordService; } });
 Object.defineProperty(exports, "EncryptionService", { enumerable: true, get: function () { return crypto_1.EncryptionService; } });
@@ -31,10 +33,15 @@ Object.defineProperty(exports, "DefaultMongoOptions", { enumerable: true, get: f
 var express_1 = require("./express");
 Object.defineProperty(exports, "ErrorNotFoundHandler", { enumerable: true, get: function () { return express_1.ErrorNotFoundHandler; } });
 Object.defineProperty(exports, "ErrorHandler", { enumerable: true, get: function () { return express_1.ErrorHandler; } });
+Object.defineProperty(exports, "FormFieldValidator", { enumerable: true, get: function () { return express_1.FormFieldValidator; } });
 var mongodb_2 = require("mongodb");
 Object.defineProperty(exports, "ObjectId", { enumerable: true, get: function () { return mongodb_2.ObjectId; } });
 Object.defineProperty(exports, "Db", { enumerable: true, get: function () { return mongodb_2.Db; } });
 Object.defineProperty(exports, "MongoError", { enumerable: true, get: function () { return mongodb_2.MongoError; } });
+var express_validator_1 = require("express-validator");
+Object.defineProperty(exports, "body", { enumerable: true, get: function () { return express_validator_1.body; } });
+Object.defineProperty(exports, "check", { enumerable: true, get: function () { return express_validator_1.check; } });
+Object.defineProperty(exports, "validationResult", { enumerable: true, get: function () { return express_validator_1.validationResult; } });
 var models_1 = require("./models");
 Object.defineProperty(exports, "Address", { enumerable: true, get: function () { return models_1.Address; } });
 Object.defineProperty(exports, "User", { enumerable: true, get: function () { return models_1.User; } });
@@ -58,4 +65,5 @@ Object.defineProperty(exports, "CustomError", { enumerable: true, get: function 
 Object.defineProperty(exports, "NotFoundError", { enumerable: true, get: function () { return models_1.NotFoundError; } });
 Object.defineProperty(exports, "DatabaseConnectionError", { enumerable: true, get: function () { return models_1.DatabaseConnectionError; } });
 Object.defineProperty(exports, "RequestValidationError", { enumerable: true, get: function () { return models_1.RequestValidationError; } });
+Object.defineProperty(exports, "UserEmailOrNameExistsError", { enumerable: true, get: function () { return models_1.UserEmailOrNameExistsError; } });
 //# sourceMappingURL=index.js.map

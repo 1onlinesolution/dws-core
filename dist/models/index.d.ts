@@ -20,3 +20,4 @@ export { CustomError } from './error/customError';
 export { NotFoundError } from './error/notFoundError';
 export { DatabaseConnectionError } from './error/databaseConnectionError';
 export { RequestValidationError } from './error/requestValidationError';
+export { UserEmailOrNameExistsError } from './error/userEmailOrNameExistsError';

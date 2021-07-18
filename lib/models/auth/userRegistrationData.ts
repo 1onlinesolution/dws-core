@@ -5,4 +5,5 @@ export interface UserRegistrationData {
   email: string;
   password: string;
   newsletter: boolean;
+  terms: boolean;
 }
