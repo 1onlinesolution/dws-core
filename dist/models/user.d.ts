@@ -8,20 +8,23 @@ export declare enum UserRole {
     SuperUser = 3,
     Admin = 4
 }
-export interface IUserPayload {
+export interface UserPayload {
+    [key: string]: any;
+}
+export interface IUser {
     _id: ObjectId;
     first_name: string;
-    api_client_id: string;
-}
-export interface IUser extends IUserPayload {
     last_name: string;
     user_name: string;
     email: string;
     password: string;
     company_name: string;
+    api_client_id: string;
     license: string;
-    roles: UserRole[];
     verified: boolean;
+    isAdmin: boolean;
+    hasAccess: boolean;
+    roles: UserRole[];
     verification_token: string;
     newsletter: boolean;
     stats: IUserStatistics;
@@ -33,6 +36,7 @@ export interface IUser extends IUserPayload {
 }
 export declare class User implements IUser {
     _id: ObjectId;
+    hasAccess: boolean;
     first_name: string;
     last_name: string;
     user_name: string;
@@ -51,8 +55,9 @@ export declare class User implements IUser {
     jwt_refresh_token: string;
     created_at: Date;
     modified_at: Date;
-    constructor({ _id, first_name, last_name, user_name, email, password, company_name, license, roles, verified, verification_token, newsletter, stats, api_client_id, api_client_secret, jwt_access_token, jwt_refresh_token, }?: {
+    constructor({ _id, hasAccess, first_name, last_name, user_name, email, password, company_name, license, roles, verified, verification_token, newsletter, stats, api_client_id, api_client_secret, jwt_access_token, jwt_refresh_token, }?: {
         _id?: ObjectId | undefined;
+        hasAccess?: boolean | undefined;
         first_name?: string | undefined;
         last_name?: string | undefined;
         user_name?: string | undefined;
@@ -75,7 +80,8 @@ export declare class User implements IUser {
     static get clientIdLength(): number;
     get fullName(): string;
     get idAsString(): string;
-    get getPayloadForToken(): IUserPayload;
+    get isVerified(): boolean;
+    get getPayloadForToken(): UserPayload;
     get isApiClient(): boolean;
     get isCustomer(): boolean;
     get isEmployee(): boolean;
@@ -83,4 +89,6 @@ export declare class User implements IUser {
     get isSuperUser(): boolean;
     get isAdmin(): boolean;
     get requiresVerification(): boolean;
+    get isBanned(): boolean;
+    banUser(): void;
 }

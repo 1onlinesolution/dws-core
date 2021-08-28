@@ -1,5 +1,5 @@
 export { RegExpUtil, Validity, Converter, DateTimeUtils, Environment } from './tools';
-export { HttpStatusCode, HttpStatusName, HttpResponse, HttpStatus, HttpUtils } from './http';
+export { HttpStatusCode, HttpStatusName, HttpResponse, HttpStatusResponse, HttpUtils } from './http';
 export { PasswordService, EncryptionService, EncryptResult, JwtService, BanUser } from './crypto';
 export { IMongoConnection, MongoConnection, IMongoDatabase, MongoDatabase, IMongoCollection, MongoCollection } from './mongodb';
 export { BaseLogger, FileLogger, ConsoleLogger, MongoLogger, DefaultConsoleOptions, DefaultFileOptions, DefaultMongoOptions } from './logger';
@@ -15,6 +15,7 @@ export {
   // user
   IUser,
   User,
+  UserPayload,
   UserRole,
   IUserStatistics,
   UserStatistics,
@@ -54,4 +55,8 @@ export {
   DatabaseConnectionError,
   RequestValidationError,
   UserEmailOrNameExistsError,
+  UserNotVerifiedError,
+  UserInvalidCredentialsError,
+  UserIsBannedError,
+  UserNotAuthorizedError,
 } from './models';

@@ -3,8 +3,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.FormFieldValidator = void 0;
 const express_validator_1 = require("express-validator");
 const tools_1 = require("../tools");
+const models_1 = require("../models");
 const EMAIL_REQUIRED = 'email is required';
 const EMAIL_NOT_VALID = 'not a valid email';
+const EMAIL_OR_USERNAME_REQUIRED = 'email or user name is required';
+const EMAIL_OR_USERNAME_NOT_VALID = 'not a valid email or user name';
 const FIRST_NAME_REQUIRED = 'first name is required';
 const FIRST_NAME_NOT_VALID = 'not a valid first name';
 const LAST_NAME_REQUIRED = 'last name is required';
@@ -12,6 +15,14 @@ const LAST_NAME_NOT_VALID = 'not a valid last name';
 const PASSWORD_CONFIRM_REQUIRED = 'confirmation password is required';
 const PASSWORD_CONFIRM_NOT_VALID = 'passwords don\'t match';
 class FormFieldValidator {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    static validateRequest(req, res, next) {
+        const errors = FormFieldValidator.getValidationErrors(req);
+        if (!errors.isEmpty()) {
+            throw new models_1.RequestValidationError(errors.array());
+        }
+        next();
+    }
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     static getValidationErrors(req) {
         return express_validator_1.validationResult(req);
@@ -32,6 +43,16 @@ class FormFieldValidator {
         return escape
             ? express_validator_1.body(fields).not().isEmpty().withMessage(messageRequired).trim().escape().isEmail().normalizeEmail().withMessage(messageInvalid)
             : express_validator_1.body(fields).not().isEmpty().withMessage(messageRequired).trim().isEmail().normalizeEmail().withMessage(messageInvalid);
+    }
+    // ===
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+    static validateBodyEmailOrUserName({ fields = 'email', 
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    min = 6, messageRequired = EMAIL_OR_USERNAME_REQUIRED, messageInvalid = EMAIL_OR_USERNAME_NOT_VALID, escape = true, }) {
+        return escape
+            ? express_validator_1.body(fields).not().isEmpty().withMessage(messageRequired).trim().escape().isLength({ min: min }).withMessage(messageInvalid)
+            : express_validator_1.body(fields).not().isEmpty().withMessage(messageRequired).trim().isLength({ min: min }).withMessage(messageInvalid);
     }
     // ===
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types

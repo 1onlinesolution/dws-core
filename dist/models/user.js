@@ -13,8 +13,9 @@ var UserRole;
     UserRole[UserRole["Admin"] = 4] = "Admin";
 })(UserRole = exports.UserRole || (exports.UserRole = {}));
 class User {
-    constructor({ _id = new mongodb_1.ObjectId(), first_name = '', last_name = '', user_name = '', email = '', password = '', company_name = '', license = '', roles = [UserRole.Customer], verified = false, verification_token = '', newsletter = true, stats = new userStatistics_1.UserStatistics(), api_client_id = '', api_client_secret = '', jwt_access_token = '', jwt_refresh_token = '', } = {}) {
+    constructor({ _id = new mongodb_1.ObjectId(), hasAccess = true, first_name = '', last_name = '', user_name = '', email = '', password = '', company_name = '', license = '', roles = [UserRole.Customer], verified = false, verification_token = '', newsletter = true, stats = new userStatistics_1.UserStatistics(), api_client_id = '', api_client_secret = '', jwt_access_token = '', jwt_refresh_token = '', } = {}) {
         this._id = new mongodb_1.ObjectId();
+        this.hasAccess = true;
         this.first_name = '';
         this.last_name = '';
         this.user_name = '';
@@ -34,6 +35,7 @@ class User {
         this.created_at = tools_1.DateTimeUtils.currentUtcDate();
         this.modified_at = this.created_at;
         this._id = _id;
+        this.hasAccess = hasAccess;
         this.first_name = first_name;
         this.last_name = last_name;
         this.user_name = user_name;
@@ -154,11 +156,18 @@ class User {
     get idAsString() {
         return `${this._id.toHexString()}`;
     }
+    get isVerified() {
+        return this.verified;
+    }
     get getPayloadForToken() {
         return {
-            _id: this._id,
+            id: this._id,
             first_name: this.first_name,
             api_client_id: this.api_client_id,
+            license: this.license,
+            verified: this.verified,
+            isAdmin: this.isAdmin,
+            hasAccess: this.hasAccess,
         };
     }
     get isApiClient() {
@@ -181,6 +190,12 @@ class User {
     }
     get requiresVerification() {
         return !(this.verified && !this.verification_token);
+    }
+    get isBanned() {
+        return !this.hasAccess;
+    }
+    banUser() {
+        this.hasAccess = false;
     }
 }
 exports.User = User;

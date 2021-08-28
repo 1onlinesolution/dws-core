@@ -19,7 +19,7 @@ export declare class JwtService {
     createAccessToken(payload: string | Buffer | object): Promise<string | undefined | Error | null>;
     createRefreshToken(payload: string | Buffer | object): Promise<string | undefined | Error | null>;
     verifyAccessToken(token: string): Promise<string | Buffer | object | undefined | Error | null>;
-    verifyRefreshToken(token: string | undefined): Promise<string | Buffer | object | undefined | Error | null>;
+    verifyRefreshToken(token: string): Promise<string | Buffer | object | undefined | Error | null>;
     ensureToken(headers: any): Promise<string | Buffer | object | undefined | Error | null>;
     extractTokenFromHeader(headers: any): string | undefined;
 }

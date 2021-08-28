@@ -1,6 +1,7 @@
-import { Request } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import { ValidationChain } from 'express-validator';
 export declare class FormFieldValidator {
+    static validateRequest(req: Request, res: Response, next: NextFunction): any;
     static getValidationErrors(req: Request): any;
     static formInputContainsErrors(req: Request): boolean;
     static validateEmail({ fields, messageRequired, messageInvalid, escape }: {
@@ -11,6 +12,13 @@ export declare class FormFieldValidator {
     }): ValidationChain;
     static validateBodyEmail({ fields, messageRequired, messageInvalid, escape }: {
         fields?: string | undefined;
+        messageRequired?: string | undefined;
+        messageInvalid?: string | undefined;
+        escape?: boolean | undefined;
+    }): ValidationChain;
+    static validateBodyEmailOrUserName({ fields, min, messageRequired, messageInvalid, escape, }: {
+        fields?: string | undefined;
+        min?: number | undefined;
         messageRequired?: string | undefined;
         messageInvalid?: string | undefined;
         escape?: boolean | undefined;

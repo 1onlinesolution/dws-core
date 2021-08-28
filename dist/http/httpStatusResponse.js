@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.HttpStatus = exports.HttpStatusName = exports.HttpStatusCode = void 0;
+exports.HttpStatusResponse = exports.HttpStatusName = exports.HttpStatusCode = void 0;
 const tools_1 = require("../tools");
 var HttpStatusCode;
 (function (HttpStatusCode) {
@@ -47,7 +47,7 @@ function response(status, value, error, ipAddress) {
         error: error,
     };
 }
-class HttpStatus {
+class HttpStatusResponse {
     // === Responses
     // eslint-disable-next-line @typescript-eslint/ban-types,@typescript-eslint/explicit-module-boundary-types, @typescript-eslint/no-explicit-any
     static error(error, value, ip) {
@@ -180,5 +180,5 @@ class HttpStatus {
         return response(HttpStatusCode.ServiceUnavailable, value || HttpStatusName.ServiceUnavailable, error, ip);
     }
 }
-exports.HttpStatus = HttpStatus;
-//# sourceMappingURL=httpStatus.js.map
+exports.HttpStatusResponse = HttpStatusResponse;
+//# sourceMappingURL=httpStatusResponse.js.map

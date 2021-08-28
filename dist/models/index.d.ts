@@ -1,5 +1,5 @@
 export { IAddress, Address } from './address';
-export { UserRole, IUser, User } from './user';
+export { UserRole, IUser, User, UserPayload } from './user';
 export { IUserStatistics, UserStatistics } from './userStatistics';
 export { IUserLogin, UserLogin } from './userLogin';
 export { IApiClientApplication, ApiClientApplication } from './apiClientApplication';
@@ -21,3 +21,7 @@ export { NotFoundError } from './error/notFoundError';
 export { DatabaseConnectionError } from './error/databaseConnectionError';
 export { RequestValidationError } from './error/requestValidationError';
 export { UserEmailOrNameExistsError } from './error/userEmailOrNameExistsError';
+export { UserNotVerifiedError } from './error/userNotVerifiedError';
+export { UserInvalidCredentialsError } from './error/userInvalidCredentialsError';
+export { UserIsBannedError } from './error/userIsBannedError';
+export { UserNotAuthorizedError } from './error/userNotAuthorizedError';

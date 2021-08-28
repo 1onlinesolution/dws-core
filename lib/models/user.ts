@@ -11,21 +11,24 @@ export enum UserRole {
   Admin,
 }
 
-export interface IUserPayload {
-  _id: ObjectId;
-  first_name: string;
-  api_client_id: string;
+export interface UserPayload {
+  [key: string]: any; // eslint-disable-line @typescript-eslint/no-explicit-any
 }
 
-export interface IUser extends IUserPayload {
+export interface IUser {
+  _id: ObjectId;
+  first_name: string;
   last_name: string;
   user_name: string;
   email: string;
   password: string;
   company_name: string;
+  api_client_id: string;
   license: string;
-  roles: UserRole[];
   verified: boolean;
+  isAdmin: boolean;
+  hasAccess: boolean;
+  roles: UserRole[];
   verification_token: string;
   newsletter: boolean;
   stats: IUserStatistics;
@@ -38,6 +41,7 @@ export interface IUser extends IUserPayload {
 
 export class User implements IUser {
   _id = new ObjectId();
+  hasAccess = true;
   first_name = '';
   last_name = '';
   user_name = '';
@@ -59,6 +63,7 @@ export class User implements IUser {
 
   constructor({
     _id = new ObjectId(),
+    hasAccess = true,
     first_name = '',
     last_name = '',
     user_name = '',
@@ -77,6 +82,7 @@ export class User implements IUser {
     jwt_refresh_token = '',
   } = {}) {
     this._id = _id;
+    this.hasAccess = hasAccess;
     this.first_name = first_name;
     this.last_name = last_name;
     this.user_name = user_name;
@@ -199,11 +205,19 @@ export class User implements IUser {
     return `${this._id.toHexString()}`;
   }
 
-  get getPayloadForToken(): IUserPayload {
+  get isVerified(): boolean {
+    return this.verified;
+  }
+
+  get getPayloadForToken(): UserPayload {
     return {
-      _id: this._id,
+      id: this._id,
       first_name: this.first_name,
       api_client_id: this.api_client_id,
+      license: this.license,
+      verified: this.verified,
+      isAdmin: this.isAdmin,
+      hasAccess: this.hasAccess,
     };
   }
 
@@ -233,5 +247,13 @@ export class User implements IUser {
 
   get requiresVerification(): boolean {
     return !(this.verified && !this.verification_token);
+  }
+
+  get isBanned(): boolean {
+    return !this.hasAccess;
+  }
+
+  banUser(): void {
+    this.hasAccess = false;
   }
 }

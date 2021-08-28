@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DatabaseConnectionError = exports.NotFoundError = exports.CustomError = exports.DataType = exports.ProductFeature = exports.ProductCategory = exports.OrderItem = exports.Order = exports.PaymentStatus = exports.OrderStatus = exports.OrderTerm = exports.EmailNotSent = exports.ApiClientApplication = exports.UserLogin = exports.UserStatistics = exports.UserRole = exports.User = exports.Address = exports.validationResult = exports.check = exports.body = exports.MongoError = exports.Db = exports.ObjectId = exports.FormFieldValidator = exports.ErrorHandler = exports.ErrorNotFoundHandler = exports.DefaultMongoOptions = exports.DefaultFileOptions = exports.DefaultConsoleOptions = exports.MongoLogger = exports.ConsoleLogger = exports.FileLogger = exports.BaseLogger = exports.MongoCollection = exports.MongoDatabase = exports.MongoConnection = exports.BanUser = exports.JwtService = exports.EncryptionService = exports.PasswordService = exports.HttpUtils = exports.HttpStatus = exports.HttpStatusName = exports.HttpStatusCode = exports.Environment = exports.DateTimeUtils = exports.Converter = exports.Validity = exports.RegExpUtil = void 0;
-exports.UserEmailOrNameExistsError = exports.RequestValidationError = void 0;
+exports.DatabaseConnectionError = exports.NotFoundError = exports.CustomError = exports.DataType = exports.ProductFeature = exports.ProductCategory = exports.OrderItem = exports.Order = exports.PaymentStatus = exports.OrderStatus = exports.OrderTerm = exports.EmailNotSent = exports.ApiClientApplication = exports.UserLogin = exports.UserStatistics = exports.UserRole = exports.User = exports.Address = exports.validationResult = exports.check = exports.body = exports.MongoError = exports.Db = exports.ObjectId = exports.FormFieldValidator = exports.ErrorHandler = exports.ErrorNotFoundHandler = exports.DefaultMongoOptions = exports.DefaultFileOptions = exports.DefaultConsoleOptions = exports.MongoLogger = exports.ConsoleLogger = exports.FileLogger = exports.BaseLogger = exports.MongoCollection = exports.MongoDatabase = exports.MongoConnection = exports.BanUser = exports.JwtService = exports.EncryptionService = exports.PasswordService = exports.HttpUtils = exports.HttpStatusResponse = exports.HttpStatusName = exports.HttpStatusCode = exports.Environment = exports.DateTimeUtils = exports.Converter = exports.Validity = exports.RegExpUtil = void 0;
+exports.UserNotAuthorizedError = exports.UserIsBannedError = exports.UserInvalidCredentialsError = exports.UserNotVerifiedError = exports.UserEmailOrNameExistsError = exports.RequestValidationError = void 0;
 var tools_1 = require("./tools");
 Object.defineProperty(exports, "RegExpUtil", { enumerable: true, get: function () { return tools_1.RegExpUtil; } });
 Object.defineProperty(exports, "Validity", { enumerable: true, get: function () { return tools_1.Validity; } });
@@ -11,7 +11,7 @@ Object.defineProperty(exports, "Environment", { enumerable: true, get: function 
 var http_1 = require("./http");
 Object.defineProperty(exports, "HttpStatusCode", { enumerable: true, get: function () { return http_1.HttpStatusCode; } });
 Object.defineProperty(exports, "HttpStatusName", { enumerable: true, get: function () { return http_1.HttpStatusName; } });
-Object.defineProperty(exports, "HttpStatus", { enumerable: true, get: function () { return http_1.HttpStatus; } });
+Object.defineProperty(exports, "HttpStatusResponse", { enumerable: true, get: function () { return http_1.HttpStatusResponse; } });
 Object.defineProperty(exports, "HttpUtils", { enumerable: true, get: function () { return http_1.HttpUtils; } });
 var crypto_1 = require("./crypto");
 Object.defineProperty(exports, "PasswordService", { enumerable: true, get: function () { return crypto_1.PasswordService; } });
@@ -66,4 +66,8 @@ Object.defineProperty(exports, "NotFoundError", { enumerable: true, get: functio
 Object.defineProperty(exports, "DatabaseConnectionError", { enumerable: true, get: function () { return models_1.DatabaseConnectionError; } });
 Object.defineProperty(exports, "RequestValidationError", { enumerable: true, get: function () { return models_1.RequestValidationError; } });
 Object.defineProperty(exports, "UserEmailOrNameExistsError", { enumerable: true, get: function () { return models_1.UserEmailOrNameExistsError; } });
+Object.defineProperty(exports, "UserNotVerifiedError", { enumerable: true, get: function () { return models_1.UserNotVerifiedError; } });
+Object.defineProperty(exports, "UserInvalidCredentialsError", { enumerable: true, get: function () { return models_1.UserInvalidCredentialsError; } });
+Object.defineProperty(exports, "UserIsBannedError", { enumerable: true, get: function () { return models_1.UserIsBannedError; } });
+Object.defineProperty(exports, "UserNotAuthorizedError", { enumerable: true, get: function () { return models_1.UserNotAuthorizedError; } });
 //# sourceMappingURL=index.js.map

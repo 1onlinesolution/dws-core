@@ -80,9 +80,7 @@ export class JwtService {
   }
 
   // eslint-disable-next-line @typescript-eslint/ban-types
-  verifyRefreshToken(token: string | undefined): Promise<string | Buffer | object | undefined | Error | null> {
-    if (token === undefined) return Promise.reject(new Error('invalid token'));
-
+  verifyRefreshToken(token: string): Promise<string | Buffer | object | undefined | Error | null> {
     const secret = this.refreshTokenSecretKey;
     const options = this.defaultRefreshJwtOptions;
     return new Promise((resolve, reject) => {

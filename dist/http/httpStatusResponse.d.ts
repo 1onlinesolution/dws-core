@@ -39,7 +39,7 @@ export interface HttpResponse {
     value?: any;
     error?: CustomError | Error | string;
 }
-export declare class HttpStatus {
+export declare class HttpStatusResponse {
     static error(error: CustomError, value?: any, ip?: string): HttpResponse;
     /**
      * 200: Success:
